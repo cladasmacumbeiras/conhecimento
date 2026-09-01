@@ -1,0 +1,1571 @@
+<title>Caderno da Salinha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;0,6..96,700;0,6..96,900;1,6..96,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --bg:#E8EAEE;
+  --surface:#F4F5F8;
+  --surface-2:#DEE1E8;
+  --ink:#15171E;
+  --ink-2:#4A4F5B;
+  --ink-3:#767C8A;
+  --rule:#C6CAD4;
+  --rule-soft:#D7DAE2;
+  --red:#A31B27;
+  --gold:#8A6620;
+  --anil:#2C3F6B;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1218; --surface:#161A22; --surface-2:#1E232C;
+    --ink:#E9E7E2; --ink-2:#A9AEB8; --ink-3:#767C8A;
+    --rule:#2A3039; --rule-soft:#232830;
+    --red:#E4636C; --gold:#D0A04B; --anil:#8AA1D2;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1218; --surface:#161A22; --surface-2:#1E232C;
+  --ink:#E9E7E2; --ink-2:#A9AEB8; --ink-3:#767C8A;
+  --rule:#2A3039; --rule-soft:#232830;
+  --red:#E4636C; --gold:#D0A04B; --anil:#8AA1D2;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Archivo","Segoe UI",system-ui,sans-serif;
+  font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{text-wrap:balance;margin:0}
+a{color:var(--anil)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* masthead */
+.masthead{border-bottom:1px solid var(--rule);background:var(--surface)}
+.masthead-in{max-width:1180px;margin:0 auto;padding:54px 28px 40px}
+.kicker{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:22px}
+.masthead h1{font-family:"Bodoni Moda",Georgia,serif;font-weight:900;
+  font-size:clamp(44px,8.5vw,88px);line-height:.94;letter-spacing:-.015em}
+.masthead h1 em{font-style:italic;font-weight:500;color:var(--red)}
+.dek{margin-top:22px;max-width:62ch;font-size:17.5px;color:var(--ink-2)}
+.mast-rule{margin-top:34px;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);height:5px}
+.meta-strip{display:flex;flex-wrap:wrap;gap:6px 38px;margin-top:20px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;color:var(--ink-3);
+  font-variant-numeric:tabular-nums}
+.meta-strip b{color:var(--ink);font-weight:500}
+
+/* shell */
+.shell{max-width:1180px;margin:0 auto;padding:0 28px 120px;
+  display:grid;grid-template-columns:238px 1fr;gap:56px;align-items:start}
+@media (max-width:940px){.shell{grid-template-columns:1fr;gap:0}}
+
+/* nav */
+.rail{position:sticky;top:24px;padding-top:44px}
+@media (max-width:940px){.rail{position:static;padding:32px 0 8px;border-bottom:1px solid var(--rule)}}
+.rail h2{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;font-weight:500}
+.toc{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.toc a{display:flex;gap:10px;align-items:baseline;padding:5px 0;text-decoration:none;
+  color:var(--ink-2);font-size:14.5px;border-bottom:1px solid var(--rule-soft)}
+.toc a:hover{color:var(--red)}
+.toc .n{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;color:var(--ink-3);flex:none;width:16px}
+.search-wrap{margin-top:26px}
+#q{width:100%;padding:9px 11px;background:var(--bg);color:var(--ink);
+  border:1px solid var(--rule);border-radius:2px;font-family:inherit;font-size:14px}
+#q::placeholder{color:var(--ink-3)}
+#count{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;
+  color:var(--ink-3);margin-top:8px;min-height:1.2em}
+.theme-btn{margin-top:22px;background:none;border:1px solid var(--rule);color:var(--ink-2);
+  border-radius:2px;padding:6px 10px;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+.theme-btn:hover{border-color:var(--ink-2);color:var(--ink)}
+
+/* sections */
+main{padding-top:44px;min-width:0}
+.sec{margin-bottom:68px;scroll-margin-top:20px}
+.sec-head{display:flex;align-items:baseline;gap:14px;padding-bottom:10px;
+  margin-bottom:6px;border-bottom:2px solid var(--ink)}
+.sec-num{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:12px;
+  color:var(--red);flex:none;font-variant-numeric:tabular-nums}
+.sec-head h2{font-family:"Bodoni Moda",Georgia,serif;font-weight:700;
+  font-size:clamp(26px,3.6vw,34px);line-height:1.1}
+.sec-note{font-size:15px;color:var(--ink-2);max-width:66ch;margin:16px 0 30px}
+.subhead{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin:34px 0 4px}
+
+/* entries */
+.entry{padding:20px 0 22px;border-bottom:1px solid var(--rule-soft);max-width:72ch}
+.entry:last-child{border-bottom:none}
+.entry h3{font-size:17px;font-weight:700;letter-spacing:-.005em;margin-bottom:2px}
+.entry h3 .qual{font-weight:400;color:var(--ink-2)}
+.entry p{margin:9px 0;max-width:68ch}
+.entry ul{margin:9px 0;padding-left:19px}
+.entry li{margin:3px 0}
+.stamp{display:inline-block;margin-top:12px;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:11px;letter-spacing:.04em;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.stamp b{color:var(--ink-2);font-weight:500}
+
+.recipe{margin:14px 0;padding:16px 18px;background:var(--surface);border-left:3px solid var(--red)}
+.recipe ul{margin:0;padding-left:18px}
+.recipe li{margin:3px 0}
+.recipe .when{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:9px}
+.recipe .after{margin-top:11px;font-size:15px;color:var(--ink-2)}
+.recipe p{margin:0}
+
+blockquote{margin:14px 0;padding:2px 0 2px 18px;border-left:2px solid var(--gold);
+  font-family:"Bodoni Moda",Georgia,serif;font-size:19px;line-height:1.45;color:var(--ink)}
+blockquote p{margin:0 0 6px;max-width:58ch}
+
+/* grids */
+.grid{display:grid;gap:0 34px;grid-template-columns:repeat(auto-fill,minmax(285px,1fr))}
+.gitem{padding:15px 0 16px;border-bottom:1px solid var(--rule-soft)}
+.gitem dt{font-weight:700;font-size:15.5px}
+.gitem .tag{display:inline-block;margin-left:7px;font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);vertical-align:1px}
+.gitem dd{margin:5px 0 0;font-size:14.5px;color:var(--ink-2)}
+
+.twrap{overflow-x:auto;margin:18px 0 8px}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:14.5px}
+th,td{text-align:left;padding:9px 14px 9px 0;vertical-align:top;border-bottom:1px solid var(--rule-soft)}
+th{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;border-bottom:1px solid var(--rule)}
+td.bicho{color:var(--red);font-weight:500}
+
+.callout{margin:26px 0 0;padding:20px 22px;background:var(--surface);border:1px solid var(--rule);max-width:72ch}
+.callout h3{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11px;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
+.callout p{margin:8px 0;font-size:14.8px;color:var(--ink-2)}
+.callout ul{margin:8px 0;padding-left:18px;font-size:14.8px;color:var(--ink-2)}
+
+.empty{display:none;color:var(--ink-3);font-size:15px;padding:20px 0}
+.is-hidden{display:none !important}
+
+footer{border-top:1px solid var(--rule);margin-top:20px;padding-top:22px;
+  font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:11.5px;
+  color:var(--ink-3);max-width:72ch;line-height:1.7}
+</style>
+
+<header class="masthead">
+  <div class="masthead-in">
+    <div class="kicker">Macumbalísticas · Clã das Macumbeiras da Salinha · 09/2024 – 09/2026</div>
+    <h1>Caderno<br>da <em>Salinha</em></h1>
+    <p class="dek">Dois anos de prática reunidos: banhos, ebós, firmezas, padês, cortes, ervas, guias, calendário, oráculo e fundamento — cada item com a data e a pessoa que disse.</p>
+    <div class="mast-rule"></div>
+    <div class="meta-strip">
+      <span><b>13.941</b> mensagens lidas</span>
+      <span><b>2</b> grupos, em sequência</span>
+      <span><b>11</b> participantes</span>
+      <span><b>14/09/2024</b> → <b>01/09/2026</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+
+  <nav class="rail" aria-label="Índice">
+    <h2>Índice</h2>
+    <ul class="toc">
+      <li><a href="#metodo"><span class="n">00</span> Como ler</a></li>
+      <li><a href="#panteao"><span class="n">01</span> Quem é quem</a></li>
+      <li><a href="#banhos"><span class="n">02</span> Banhos</a></li>
+      <li><a href="#firmezas"><span class="n">03</span> Firmezas e feitiços</a></li>
+      <li><a href="#ebos"><span class="n">04</span> Ebós e limpezas</a></li>
+      <li><a href="#pades"><span class="n">05</span> Padês, balaios e cortes</a></li>
+      <li><a href="#ervas"><span class="n">06</span> Ervas e elementos</a></li>
+      <li><a href="#guias"><span class="n">07</span> Guias, roupa e objetos</a></li>
+      <li><a href="#calendario"><span class="n">08</span> Calendário</a></li>
+      <li><a href="#preceito"><span class="n">09</span> Preceito e conduta</a></li>
+      <li><a href="#oraculo"><span class="n">10</span> O oráculo</a></li>
+      <li><a href="#sonhos"><span class="n">11</span> Sonhos e sinais</a></li>
+      <li><a href="#vocabulario"><span class="n">12</span> Vocabulário</a></li>
+      <li><a href="#ensinamentos"><span class="n">13</span> Ensinamentos</a></li>
+    </ul>
+
+    <div class="search-wrap">
+      <input id="q" type="search" placeholder="Buscar no caderno…" autocomplete="off" aria-label="Buscar no caderno">
+      <div id="count" aria-live="polite"></div>
+    </div>
+
+    <button class="theme-btn" id="theme">Tema</button>
+  </nav>
+
+  <main>
+
+    <!-- 00 -->
+    <section class="sec" id="metodo">
+      <div class="sec-head"><span class="sec-num">00</span><h2>Como ler este caderno</h2></div>
+      <p class="sec-note">Tudo aqui saiu do texto dos dois grupos, sem nada acrescentado de fora. Onde a mensagem original citava uma fonte externa — um livro, o ChatGPT, um vídeo — isso está dito. Cada entrada carrega autoria e data, para você conseguir voltar à conversa original.</p>
+
+      <div class="callout">
+        <h3>Os dois grupos são um só caminho</h3>
+        <p><b>Macumbalísticas</b> (14/09/2024 → 19/05/2026, 9.780 mensagens) é o grupo maior e mais antigo. Passou por vários nomes — Prósperas, Macumbalísticos — e por várias formações.</p>
+        <p><b>Clã das Macumbeiras da Salinha</b> (04/05/2026 → 01/09/2026, 4.161 mensagens) é a continuação, com o núcleo reduzido a quatro pessoas mais a orientadora.</p>
+        <p>A mesma orientadora conduz os dois: aparece como <b>Monique Martins</b> no primeiro e <b>Mayra 🌙</b> no segundo — é a mesma pessoa, chamada de Mayra pelo grupo inteiro. Neste caderno ela é sempre <b>Mayra</b>.</p>
+      </div>
+
+      <div class="callout">
+        <h3>O que ficou de fora — e por quê</h3>
+        <ul>
+          <li><b>1.585 mensagens de mídia.</b> O export marca cada foto, vídeo e áudio como <span style="font-family:'IBM Plex Mono',monospace;font-size:.9em">&lt;Mídia oculta&gt;</span> — o conteúdo não vem no arquivo. Boa parte do ensino veio em áudio e vídeo, e esse material <b>não está aqui</b>. Este caderno é o que foi escrito, não tudo que foi dito.</li>
+          <li><b>Fofoca e vida de terceiros.</b> Grande parte dos dois grupos é conversa sobre gente de fora. Nada disso entrou.</li>
+          <li><b>Dados sensíveis.</b> Nomes completos usados em trabalho espiritual, endereços, telefones, chaves Pix e valores individuais foram deixados de fora de propósito.</li>
+          <li><b>Listas de rateio.</b> Quem comprou o quê, quanto ficou para cada uma — é metade do volume dos grupos e não é fundamento. Só entrou quando a lista de materiais em si é a informação.</li>
+        </ul>
+      </div>
+
+      <div class="callout">
+        <h3>Quem fala</h3>
+        <p><b>Mayra</b> (4.106 mensagens somando os dois grupos) é quem conduz — é dela quase toda a orientação ritual deste caderno. Iniciada no Candomblé de nação Angola, filha de <b>Matamba e Mutakalambo</b> (Iansã e Oxóssi), médium de Maria Zureta, Exu Caveira e Adaga de Cobre. Cartomante de profissão. Feita muzenza em janeiro de 2025.</p>
+        <p><b>Marilene / “Má”</b> (3.301), <b>Roberta</b> (2.746) e <b>Lívia</b> (2.436) atravessam os dois grupos inteiros. <b>Ana</b> (786, saiu em 02/2025), <b>Gabi</b>, <b>Ellen</b>, <b>Lana</b>, <b>Jéssica</b>, <b>Nana</b> e <b>Edilamar</b> passaram por períodos. Onde uma delas relata orientação recebida em terra, isso está marcado.</p>
+      </div>
+    </section>
+
+    <!-- 01 -->
+    <section class="sec" id="panteao">
+      <div class="sec-head"><span class="sec-num">01</span><h2>Quem é quem</h2></div>
+      <p class="sec-note">O panteão como ele aparece nos grupos — só o que as conversas afirmam, sem completar com fundamento de fora.</p>
+
+      <h3 class="subhead">Orixás e Nkisis</h3>
+      <dl class="grid">
+        <div class="gitem"><dt>Matamba <span class="tag">Iansã</span></dt><dd>Nkisi de frente de Mayra. “Iansã é meu norte, Oxóssi é meu chão.” Acesa pedindo que sopre os bons ventos profissionais. Sincretizada com Santa Bárbara, 04/12.<span class="stamp"><b>Mayra</b> · 04/11/2025 · 02/12/2025</span></dd></div>
+        <div class="gitem"><dt>Mutakalambo <span class="tag">Oxóssi</span></dt><dd>O segundo Nkisi de Mayra. “Meu pai que me ama chama Oxóssi.” Data: 20/01. Ligado ao odu Obará.<span class="stamp"><b>Mayra</b> · 29/06/2026 · 03/02/2025</span></dd></div>
+        <div class="gitem"><dt>Iemanjá <span class="tag">Mikaiá</span></dt><dd>“O mar que acolhe. Foi Iemanjá que guiou os nossos até chegar nessa terra, e por isso ela é a mãe de todas as cabeças.” Data: 02/02 — frutas claras (uva verde, maçã verde, pêra), rosas brancas, manjar branco. Evitar frutas cítricas.<span class="stamp"><b>Mayra</b> · 03/02/2026 e 02/02/2026</span></dd></div>
+        <div class="gitem"><dt>Oxalá <span class="tag">Funfun</span></dt><dd>Tem o caramujo como um de seus símbolos — calma, paciência, serenidade. Energia que esfria as cabeças quentes. Recebe canjica com azeite de oliva para apaziguar cabeças e equilibrar caminhos da família.<span class="stamp"><b>Mayra</b> · 09/07/2026</span></dd></div>
+        <div class="gitem"><dt>Oxum</dt><dd>“Corpo, alma e coração.” “Mãe, rio, fluxo que acontece natural; ela nos ensina a olhar para quem fomos com amor e para quem estamos virando com admiração.” Vela com copo de mel ao lado. Fertilidade em todas as áreas, não só gravidez.<span class="stamp"><b>Mayra</b> · 08/07/2026 e 08/12/2025</span></dd></div>
+        <div class="gitem"><dt>Xangô</dt><dd><b>Nunca pedir justiça a Xangô — sempre misericórdia.</b> Recebe o banho de quiabo. Data citada: 13/06.<span class="stamp"><b>Mayra</b> · 21/02/2025 e 10/06/2025</span></dd></div>
+        <div class="gitem"><dt>Omolu / Obaluaê</dt><dd>Agosto é o mês dele — “um mês muito pesado”. Começa-se o mês limpando tudo que precisa ser transformado. Pelo sincretismo das Almas, fica ao lado dos Pretos-Velhos.<span class="stamp"><b>Mayra</b> · 30/07/2026 e 04/08/2025</span></dd></div>
+        <div class="gitem"><dt>Nanã <span class="tag">mãe do barro</span></dt><dd>“Nanã é foda.” Não se pode fazer nada para ela que tenha metal.<span class="stamp"><b>Mayra</b> · 21/07/2026</span></dd></div>
+        <div class="gitem"><dt>Ogum</dt><dd>Data: 23/04 — a mãe de Mayra faz feijoada todo ano. Vela e copo de cerveja. Foi Ogum quem liberou Mayra para trabalhar durante o preceito, por ser seu sustento.<span class="stamp"><b>Mayra</b> · 23/04/2025 e 09/07/2026</span></dd></div>
+        <div class="gitem"><dt>Oxumaré</dt><dd>Orixá de Marilene, saudado por ela quase toda manhã: “meu pai Oxumaré abençoe”. Movimento, renovação, transformação. Vela com copo de água pedindo nunca depender de crédito.<span class="stamp"><b>Má</b>, todo o período · <b>Mayra</b> · 10/06/2025</span></dd></div>
+        <div class="gitem"><dt>Nvunji <span class="tag">Ibeji · Cosme e Damião</span></dt><dd>Nkisi criança. “Forças ligadas à vida, renascimento, juventude e frescor da natureza… a vitalidade que resiste e renasce mesmo diante da morte.” Setembro é o mês deles.<span class="stamp"><b>Mayra</b> · 31/08/2025</span></dd></div>
+        <div class="gitem"><dt>Obará <span class="tag">odu</span></dt><dd>Odu ligado a Oxóssi — prosperidade, comércio, plantio e colheita. Trabalhado com grãos e abóbora.<span class="stamp"><b>Mayra</b> · 09/07/2026</span></dd></div>
+        <div class="gitem"><dt>Nzazi · Nkosi · Njila</dt><dd>Nkisis citados nas saudações e agradecimentos de Mayra. Njila é quem “possibilita o movimento”; Nkosi, “a navalha que me deu a vida na minha nação”.<span class="stamp"><b>Mayra</b> · 02/12/2024</span></dd></div>
+      </dl>
+
+      <h3 class="subhead">Pombagiras</h3>
+      <dl class="grid">
+        <div class="gitem"><dt>As 7 Marias</dt><dd>Padilha, Navalha, Quitéria, Zureta, Mulambo, Farrapo e Figueira — uma vela para cada, após o banho de empoderamento. Cuidadas juntas na sexta-feira da paixão.<span class="stamp"><b>Má</b> · 30/05/2026 · <b>Mayra</b> · 17/02/2025</span></dd></div>
+        <div class="gitem"><dt>Maria Zureta</dt><dd>A Pombagira de Mayra. Dura e certeira: “a gente sente o esporro de Maria Zureta, mas ele chega de um jeito que dói menos e movimenta muito.” Come na sexta da paixão e gosta das coisas dela no dia das bruxas. Foi ela quem proibiu o grupo de fofocar. Frutas doces na primeira segunda do mês; pedidos embaixo da imagem.<span class="stamp"><b>Roberta</b> · 30/06/2026 · <b>Mayra</b> · 02/09/2025</span></dd></div>
+        <div class="gitem"><dt>Maria Mulambo do Cruzeiro das Almas</dt><dd>Dona da cabeça e dos caminhos de Marilene. “Vai viver a vida que Mulambo te deu.” A falange dela é mais “bagaceira” — frutas doces em geral. Mulambo da Lata de Lixo é quem deu mão de corte a Mayra.<span class="stamp"><b>Má</b> · 29/06/2026 · <b>Mayra</b> · 02/09/2025</span></dd></div>
+        <div class="gitem"><dt>Dama da Noite</dt><dd>Caminha com Roberta e com Mayra. Foi prostituta em vida, de família rica — “preferiu ser amada num cabaré do que maltratada em casa”. Recado: que nenhuma se curve ao machismo de homens que não têm a nossa coragem. Frutas escuras, licor, coisas “chiques”: seguindo a louça, ela é uma dama.<span class="stamp"><b>Mayra</b> · 14/06/2026 e 02/09/2025</span></dd></div>
+        <div class="gitem"><dt>Dona Rosa / Rosa Negra</dt><dd>De Lívia. “Foi só respeitar o espaço de Dona Rosa que ela resolveu TUDO.” Investir em rosas, muitas rosas — é o que ela gosta.<span class="stamp"><b>Mayra</b> · 29/07/2026 e 02/09/2025</span></dd></div>
+        <div class="gitem"><dt>Maria Farrapo</dt><dd>De Lívia no primeiro ciclo. “Dona Farrapo, após comer, chegou outra mulher e devolveu a ela o desejo de ser mulher também.”<span class="stamp"><b>Mayra</b> · 02/12/2024</span></dd></div>
+        <div class="gitem"><dt>Dona Menina / Pombagira Menina</dt><dd>Trabalha autoestima e glamour: “se amar pra não precisar da validação de ninguém”. Come junto com Dama da Noite em trabalho de empoderamento.<span class="stamp"><b>Mayra</b> · 14/06/2026</span></dd></div>
+        <div class="gitem"><dt>Maria Bonita</dt><dd>De Gabi. Traz brasilidade e ancestralidade — padê com cana, rapadura, melaço e frutas do nosso solo, tipo banana.<span class="stamp"><b>Mayra</b> · 02/09/2025</span></dd></div>
+        <div class="gitem"><dt>7 Saias</dt><dd>Caminha com Ellen. “O 7 Navalhas mandou acolhermos a 7.”<span class="stamp"><b>Mayra</b> · 24/06/2026</span></dd></div>
+        <div class="gitem"><dt>Malandrinha do Morro</dt><dd>De Ellen. Lívia relata tê-la visto mostrar a roupa dela em sonho, meses antes de entender.<span class="stamp"><b>Lívia</b> · 10/05/2026 · <b>Mayra</b> · 01/09/2026</span></dd></div>
+        <div class="gitem"><dt>Pombagira Cigana / Miryad</dt><dd>A Cigana que caminha com Mayra e com Ana. Santa Sara, padroeira do povo cigano, é 24/05 — vela amarela para o povo cigano e branca para Miryad.<span class="stamp"><b>Mayra</b> · 23/05/2025</span></dd></div>
+      </dl>
+
+      <h3 class="subhead">Exus e malandros</h3>
+      <dl class="grid">
+        <div class="gitem"><dt>Exu Caveira</dt><dd>Protetor de Mayra. Vela preta e branca. “Exu Caveira ninguém quer ter.” Pedido dele: ficar no portão junto com Brasinha. Come em 07/07.<span class="stamp"><b>Má</b> · 30/05/2026 · <b>Roberta</b> · 20/07/2026</span></dd></div>
+        <div class="gitem"><dt>7 Navalhas</dt><dd>O mais presente dos dois grupos. Trabalha trabalho, dinheiro, oportunidade e sorte. Bebe cerveja — “bebe até mijo”. Recebe coisas com muitas sementes na primeira segunda do mês. Data favorita de descer: 07/07. Frase dele: “adoçamento é pro que tá bom; pro que tá ruim é choro.”<span class="stamp"><b>Mayra</b> · 12/11/2024, 13/06/2025 e 02/09/2025</span></dd></div>
+        <div class="gitem"><dt>Exu do Ouro</dt><dd>Trabalhado para grana e questão profissional, junto com o odu Obará. Recebe moedas de outros países no assentamento.<span class="stamp"><b>Mayra</b> · 09/06/2026 e 12/08/2026</span></dd></div>
+        <div class="gitem"><dt>Tiriri</dt><dd>Padê com cebola e alho: corta vampirismo energético de outras encarnações e afasta espíritos. Chamado com ponto cantado e vela preta.<span class="stamp"><b>Mayra</b> · 30/06/2026 e 10/07/2026</span></dd></div>
+        <div class="gitem"><dt>Trança Ruas (das Almas)</dt><dd>De Ellen. Padê com folha de manga — “quer trazer renovação para a família”. Galo pequeno de qualquer cor.<span class="stamp"><b>Mayra</b> · 09/07/2026 e 10/07/2026</span></dd></div>
+        <div class="gitem"><dt>Marabô</dt><dd>De Lívia. Padê com laranja e chaves — “mais sorte para a família e mais vitalidade”. Galo pequeno rajado.<span class="stamp"><b>Mayra</b> · 09/07/2026 e 10/07/2026</span></dd></div>
+        <div class="gitem"><dt>Brasinha</dt><dd>Faz limpeza e desobstrução de caminhos. Avisa antes das coisas — “o Brasinha avisou que você ia ficar muito brava”.<span class="stamp"><b>Mayra</b> · 09/07/2026 · <b>Roberta</b> · 21/07/2026</span></dd></div>
+        <div class="gitem"><dt>Adaga de Cobre <span class="tag">erê</span></dt><dd>A criança de Mayra, “o meu amor de todas as vidas”. Fez um ano em janeiro de 2025 e o grupo cantou parabéns. Resolve o material: adoçamentos, dinheiro, contas. “Quem resolve problema é erê.”<span class="stamp"><b>Mayra</b> · 22/01/2025 e 19/12/2025</span></dd></div>
+        <div class="gitem"><dt>Povo da Lira</dt><dd>Firmado uma vez por mês, na primeira terça. Cada uma tem o seu: Maria Navalha (Má), Maria Padilha (Roberta), Zé Mulatinho (Lívia), Malandrinha do Morro (Ellen).<span class="stamp"><b>Mayra</b> · 01/09/2026</span></dd></div>
+        <div class="gitem"><dt>Zé Pilintra</dt><dd>Incluído sempre que se oferenda a linha dos malandros.<span class="stamp"><b>Mayra</b> · 05/10/2025</span></dd></div>
+        <div class="gitem"><dt>Exu Mirim</dt><dd>Linha trabalhada com cuidado extra: fumam e bebem o que é ofertado aos Exus, mas menos, “por serem menos desenvolvidos”.<span class="stamp"><b>Mayra</b> · 13/10/2025</span></dd></div>
+        <div class="gitem"><dt>Exu homem <span class="tag">função</span></dt><dd>“Trabalha muito a sustentação, a proteção e a segurança do lar. Exu é terra, é força telúrica, é base e estrutura.”<span class="stamp"><b>Mayra</b> · 09/07/2026</span></dd></div>
+      </dl>
+
+      <h3 class="subhead">Direita — velhos, caboclos, boiadeiros e crianças</h3>
+      <dl class="grid">
+        <div class="gitem"><dt>Pai João de Angola</dt><dd>O Preto-Velho de referência dos dois grupos. Quem não tem nome confirmado de Preto-Velho firma ele. Prescreve banhos, farinhas e o vinho antes de dormir. Na quaresma, Mayra fica “ancoradíssima na força de Pai João de Angola”.<span class="stamp"><b>Mayra</b> · 15/04/2025, 17/08/2026 e 24/08/2026</span></dd></div>
+        <div class="gitem"><dt>Vó Cambinda</dt><dd>Preta-Velha da linha, acesa junto com Pai João no dia dos Pretos-Velhos. “Que tudo que você toque continue sendo ouro e floresça.”<span class="stamp"><b>Mayra</b> · 13/05/2025 e 26/08/2025</span></dd></div>
+        <div class="gitem"><dt>Vó Benta</dt><dd>Preta-Velha de Marilene.<span class="stamp"><b>Má</b> · 12/05/2026 e 30/06/2025</span></dd></div>
+        <div class="gitem"><dt>Vó Benedita</dt><dd>Preta-Velha de Roberta. Vela e copo de água.<span class="stamp"><b>Roberta</b> · 13/05/2026 · <b>Mayra</b> · 01/06/2025</span></dd></div>
+        <div class="gitem"><dt>Boiadeiro / Zé do Laço</dt><dd>De Roberta. Fuma paiol e cigarro de palha; bebe cerveja. Cuidado nas quintas. Recebe charuto, abóbora cozida, 7 grãos, carne seca e fumo de rolo; o agrado dele é para prosperidade.<span class="stamp"><b>Roberta</b> · 26/05/2026 · <b>Mayra</b> · 11/08/2025</span></dd></div>
+        <div class="gitem"><dt>Araribóia <span class="tag">caboclo</span></dt><dd>“Um homem muito grande, velho e carrancudo… mas ele é sempre carinho.” Pediu colar de coral selado para proteção e cura da garganta. Recado dele: “deixe que as pessoas sejam responsabilizadas pelas escolhas delas.” Acender vela junto com Jurema.<span class="stamp"><b>Mayra</b> · 13/01/2025 e 27/11/2025</span></dd></div>
+        <div class="gitem"><dt>Florzinha <span class="tag">erê</span></dt><dd>Criança de Marilene. Consagrar o dia a ela e pedir o encanto de criança para atravessar dias pesados. Pediu um copo próprio, “porque todas as irmãs têm”.<span class="stamp"><b>Mayra</b> · 21/07/2026 e 19/09/2025</span></dd></div>
+        <div class="gitem"><dt>As crianças da salinha</dt><dd>Cobrinha Verdinha (Lívia), Florzinha (Marilene), Florzinha de Ouro (Ellen), Mariazinha (Sophia), Adaga de Cobre (Mayra). Roberta acende em intenção a Iemanjá pedindo que direcione a mensageira dela.<span class="stamp"><b>Mayra</b> · 19/09/2025</span></dd></div>
+      </dl>
+    </section>
+
+    <!-- 02 -->
+    <section class="sec" id="banhos">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Banhos</h2></div>
+      <p class="sec-note">Mais de trinta banhos prescritos em dois anos. Onde a orientação dizia o sentido — “do pescoço para baixo”, “da cabeça aos pés” — isso está mantido literalmente, porque é fundamento. A regra geral do grupo: banho de erva vem <b>depois</b> do banho de higiene, e se seca naturalmente.</p>
+
+      <h3 class="subhead">Limpeza e descarrego</h3>
+
+      <div class="entry">
+        <h3>Manjericão, alecrim, boldo e água de arroz <span class="qual">— cansaço e desvitalização</span></h3>
+        <div class="recipe">
+          <div class="when">Antes de dormir · do pescoço para baixo</div>
+          <ul><li>Manjericão — limpa e renova</li><li>Alecrim — protetor e purificador</li><li>Boldo — limpa, acalma, purifica, eleva</li><li>Água de arroz — acalma</li></ul>
+          <p class="after">Logo após o banho, firmar vela para o anjo da guarda.</p>
+        </div>
+        <p>A versão base, dada na primeira semana do grupo, era manjericão, alecrim, boldo e — se possível — alfazema, a cada 15 dias.</p>
+        <span class="stamp"><b>Mayra</b> · 20/09/2024 e 14/09/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Casca de alho, casca de cebola e alecrim <span class="qual">— descarrego de lua minguante</span></h3>
+        <div class="recipe">
+          <div class="when">Na lua minguante</div>
+          <ul><li>Casca de alho</li><li>Casca de cebola</li><li>Alecrim</li></ul>
+          <p class="after">Três dias depois da minguante, o banho de harmonia: casca de laranja, abre-caminho e manjericão.</p>
+        </div>
+        <span class="stamp">Do encontro · <b>Má</b> · 09/02/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Banho de quiabo <span class="qual">— quebra de feitiço, com Xangô</span></h3>
+        <div class="recipe">
+          <div class="when">Segunda-feira, antes de dormir · do pescoço para baixo</div>
+          <ul><li>12 quiabos picados em rodela</li><li>1 litro de água</li><li>3 colheres de açúcar</li></ul>
+          <p class="after">Picar os quiabos <b>em silêncio</b>, pedindo misericórdia a Xangô, para que corte o mal e as demandas feitas. Colocar na água e mexer com as mãos até formar a baba. Tomar depois do banho de higiene e secar naturalmente. Vestir roupa clara e limpa e fazer uma oração a Xangô, pedindo que quebre toda inveja, feitiçaria, mau-olhado e injustiça — desta vida ou de outra encarnação.</p>
+          <p class="after"><b>Não beber, não fumar e não sair de casa depois.</b></p>
+        </div>
+        <blockquote><p>Nunca pedir a Xangô justiça — sempre misericórdia.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 21/02/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Carqueja, arruda e guiné <span class="qual">— pós-ebó de encruzilhada</span></h3>
+        <div class="recipe">
+          <div class="when">Depois das 18h · do pescoço para baixo</div>
+          <ul><li>Carqueja</li><li>Arruda</li><li>Guiné</li></ul>
+          <p class="after">Tomado ao voltar da encruzilhada, sem ter olhado para trás. Depois, vela em intenção ao seu Ori pedindo força, sabedoria e firmeza para aceitar e conduzir as mudanças que estão chegando.</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 10/06/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Guiné, manjericão e alecrim</h3>
+        <div class="recipe">
+          <div class="when">Terça-feira · da cabeça aos pés · de preferência macerados</div>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 20/07/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Boldo</h3>
+        <p>Do pescoço para baixo, na semana da firmeza de Preto-Velho (08/06/2026). Também indicado no dia seguinte a um encontro pesado, para descarregar (30/11/2025). E na versão de Araribóia: passar 9 folhas de boldo pelo corpo, colocar as folhas maceradas na água do banho e acender uma vela ao lado em intenção a ele, para levar o carrego embora (07/12/2025).</p>
+        <span class="stamp"><b>Mayra</b> e <b>Má</b> · 2025–2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Banho de pipoca no dendê <span class="qual">— abertura de agosto, para Omolu</span></h3>
+        <div class="recipe">
+          <div class="when">1º de agosto · da cabeça aos pés</div>
+          <ul><li>Pipoca, de preferência estourada no dendê (na falta, azeite)</li><li>Um pano ou TNT de cor escura — preto, marrom ou outro tom escuro</li></ul>
+          <p class="after">Estender o pano no chão, ficar descalça em cima dele e banhar-se com a pipoca da cabeça aos pés. As pipocas que caírem fora do tecido devem ser recolhidas com as mãos e colocadas junto às demais. Amarrar o pano com todas as pipocas dentro, sair de casa e deixar o embrulho em local seco ou diretamente sobre a terra.</p>
+          <p class="after">Antes: uma vela para Omolu, uma para Exu Caveira e uma para o seu Exu, na porta ou no portão.</p>
+        </div>
+        <blockquote><p>A pipoca estourada no dendê tem energia quente e por isso potencializa a limpeza. E a própria pipoca simboliza a transformação: entra como milho e se transforma em pipoca.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 30/07/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Pipoca e canjica passadas no corpo</h3>
+        <div class="recipe">
+          <div class="when">Depois de um ritual · fora de casa ou no banheiro</div>
+          <p>Passar a pipoca pelo corpo pedindo coisas boas e transformação, inclusive financeira. Depois passar a canjica da mesma forma. Juntar tudo, colocar numa sacola e descartar ao pé de uma árvore. Em seguida, banho de asseio; e antes de dormir, o banho de erva do pescoço para baixo. Fechar acendendo uma vela em intenção ao Ori.</p>
+        </div>
+        <span class="stamp">Do encontro · <b>Má</b> · 18/09/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Canjica</h3>
+        <p>“Nada que um banho de canjica não resolva.” Quando a cabeça está atordoada, pode ser tomado da cabeça aos pés. Água de canjica também entra no banho de limpeza grande, junto com boldo e efun ralado.</p>
+        <span class="stamp"><b>Mayra</b> · 08/12/2025, 31/08/2026 e 09/10/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Fumo, guiné e sal grosso <span class="qual">— oferecimento Exu Caveira</span></h3>
+        <div class="recipe">
+          <div class="when">Antes de encontro de esquerda</div>
+          <ul><li>Fumo — só charuto</li><li>3 folhas de guiné</li><li>7 pedras de sal grosso</li></ul>
+          <p class="after">Mayra sobre ele: “não sei pra que é esse banho não, mas tomei e me senti uma macho.”</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 05/03/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Cachaça, guiné e sal grosso <span class="qual">— fim de quaresma</span></h3>
+        <div class="recipe">
+          <div class="when">Sexta-feira, no dia seguinte à oferenda · do pescoço para baixo</div>
+          <p>Na véspera, servir o casal de Exus com um copo de cachaça contendo <b>9 folhas de guiné</b> e <b>9 pedras de sal grosso</b>, um cigarro, uma vela preta e uma vela branca, pedindo proteção.</p>
+          <p class="after">No dia seguinte, o banho é feito com a própria cachaça, o guiné e o sal grosso ofertados, macerados, mais 1 litro de água. Depois do banho, firmeza de vela para Pretos-Velhos e para o anjo da guarda.</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 15/04/2025</span>
+      </div>
+
+      <h3 class="subhead">Reposição, harmonia e vitalidade</h3>
+
+      <div class="entry">
+        <h3>Manjericão, alecrim e rosa vermelha <span class="qual">— repor energia</span></h3>
+        <div class="recipe">
+          <div class="when">Segunda, quarta e sexta · antes de dormir</div>
+          <ul><li>Manjericão — renova e repõe energia</li><li>Alecrim — renova energia e traz alegria</li><li>Rosa vermelha — autoestima e vitalidade</li></ul>
+          <p class="after">Pode ser macerado ou fervido; coar, deixar numa garrafa e fracionar nos três dias.</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 07/04/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Infusão de manjericão <span class="qual">— protocolo de Pai João de Angola</span></h3>
+        <div class="recipe">
+          <div class="when">Segunda, quarta e sexta · de manhã, antes do trabalho</div>
+          <ul><li>Manjericão, em infusão</li><li>Hortelã</li><li>1 canela em pau</li><li>Casca de laranja</li></ul>
+          <p class="after">Fazer 2 litros, guardar numa garrafa e fracionar. Vinha acompanhado de uma taça de vinho antes de dormir, até a garrafa acabar.</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 24/08/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Manjericão, hortelã e açúcar</h3>
+        <div class="recipe"><div class="when">Quarta-feira, em semana de trânsito lunar pesado</div><p>Manjericão, hortelã e 3 colheres de açúcar.</p></div>
+        <span class="stamp"><b>Mayra</b> · 03/06/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Casca de laranja com manjericão</h3>
+        <p>Para repor energia quando o corpo continua pesado depois do corte.</p>
+        <span class="stamp"><b>Mayra</b> · 30/06/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Água de arroz <span class="qual">— para filhas de Iemanjá</span></h3>
+        <div class="recipe">
+          <div class="when">Pode ir na cabeça</div>
+          <p>Colocar 3 colheres de arroz de molho até a água ficar branquinha; coar (o arroz se usa normalmente depois). Misturar com a água quente do chuveiro. Antes do banho, impor as mãos sobre a água e rezar do coração a Iemanjá, pedindo equilíbrio nesse banho.</p>
+          <p class="after">“Reza a lenda que água de arroz eleva a frequência dos anjos.”</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 19/06/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Manjericão e rosa branca <span class="qual">— cólica</span></h3>
+        <p>Somado a dormir bem e beber muita água.</p>
+        <span class="stamp"><b>Mayra</b> · 30/07/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Manjericão, hibisco e folha de pitanga</h3>
+        <p>Na quarta-feira; depois, acender Matamba pedindo que ela sopre os bons ventos profissionais.</p>
+        <span class="stamp"><b>Mayra</b> · 17/08/2026</span>
+      </div>
+
+      <h3 class="subhead">Preparação para encontro e incorporação</h3>
+
+      <div class="entry">
+        <h3>Os banhos de véspera</h3>
+        <p>Cada encontro tinha o seu, tomado no sábado de manhã antes de sair. Os que ficaram registrados:</p>
+        <ul>
+          <li><b>Guiné</b> — quinta, sexta e sábado antes de dormir, no preceito de três dias (25/11/2024)</li>
+          <li><b>Artemísia, anis estrelado e folhas de rosa</b> — as folhas, não as pétalas (12/05/2025)</li>
+          <li><b>Anis estrelado e rosa branca</b> (26/05/2025)</li>
+          <li><b>Anis estrelado, rosa branca e alecrim</b> (10/06/2025)</li>
+          <li><b>Fumo de rolo</b> (13/10/2025)</li>
+          <li><b>Manjericão</b>, do pescoço para baixo (06/12/2025)</li>
+          <li><b>Pipoca com sacudimento de folhas</b>, no dia do corte; e a pesagem com <b>pipoca, peregun e couve</b> (09 e 14/07/2026)</li>
+        </ul>
+        <span class="stamp"><b>Mayra</b> · 2024–2026</span>
+      </div>
+
+      <h3 class="subhead">Prosperidade, atração e virada de ano</h3>
+
+      <div class="entry">
+        <h3>Banho de abre-caminhos da virada</h3>
+        <div class="recipe">
+          <div class="when">31/12, antes de se arrumar para a virada</div>
+          <ul>
+            <li>Açafrão — bem pouco, “porque ele deixa TUDO amarelo”</li>
+            <li>7 folhas de louro</li>
+            <li>1 canela em pau</li>
+            <li>Semente de girassol</li>
+            <li>Pétalas de uma rosa amarela</li>
+            <li>Pétalas de uma rosa</li>
+            <li>Pétalas de uma rosa branca</li>
+            <li>Um pouco de mel</li>
+            <li>Abre-caminhos</li>
+          </ul>
+          <p class="after">Na véspera, dia 30/12, um banho de <b>9 folhas de guiné</b> — para limpeza e fechamento de ciclos.</p>
+          <p class="after">Depois do banho do dia 31, repetir 7 vezes: <i>“Eu sou rica, próspera, todas as portas se abrem para mim nesse novo ciclo, eu sou a melhor versão de mim. Sou grata pelo que tenho e pelo que vou conquistar nesse novo ano.”</i> Em seguida, orar o Salmo 23. Quem puder, faça uma lista de metas e objetivos e leia antes de sair para festejar.</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 23/12/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Banho da Cigana <span class="qual">— prosperidade, na primeira lua nova do ano</span></h3>
+        <div class="recipe">
+          <div class="when">Primeiro dia da lua nova de 2026</div>
+          <ul><li>Canela</li><li>Calêndula</li><li>Folha de louro</li><li>Abre-caminho</li></ul>
+          <p class="after">Veio pronto, no kit de virada de ano preparado por Mayra.</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 08/12/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Casca de maçã, cravo, açúcar e canela <span class="qual">— energia das Pombagiras</span></h3>
+        <div class="recipe">
+          <div class="when">Novembro, mês de almas · seguido de vela e cigarro</div>
+          <ul><li>Casca de maçã</li><li>Cravo</li><li>Açúcar</li><li>Canela em pau</li><li>Perfume</li></ul>
+          <p class="after">Depois do banho, acender um cigarro e uma vela para a sua Pombagira de frente. Serve para trazer a energia delas e dar ânimo para o mês.</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 07/11/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Banho das moças <span class="qual">— empoderamento</span></h3>
+        <div class="recipe">
+          <div class="when">Sábado de manhã · 3 sábados seguidos</div>
+          <ul><li>21 cravos-da-índia</li><li>1 canela em pau cortada em 4</li><li>Pétalas de rosa vermelha</li><li>Hibisco</li><li>Rapadura</li></ul>
+          <p class="after">Depois, acender uma vela para cada uma das 7 Marias: Padilha, Navalha, Quitéria, Zureta, Mulambo, Farrapo e Figueira.</p>
+        </div>
+        <span class="stamp">Do encontro, via <b>Má</b> · 30/05/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Banho de Oxum <span class="qual">— fertilidade</span></h3>
+        <div class="recipe">
+          <div class="when">21/06</div>
+          <ul><li>1 fava de Oxum</li><li>Um punhado de oriri</li><li>5 borrifadas do seu perfume</li><li>1 girassol</li><li>5 colheres de açúcar</li></ul>
+          <p class="after">Depois, vela amarela e uma taça com mel ao lado. Agradecer a Oxum a fertilidade em todas as áreas: projetos, sonhos, oportunidades, realizações. <b>Quem não deseja engravidar deve deixar isso claro na oração</b>, direcionando a fertilidade apenas para os demais campos.</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 10/06/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Banho dos 4 ases</h3>
+        <div class="recipe">
+          <div class="when">Terça-feira · do pescoço para baixo</div>
+          <ul><li>Os 4 ases do baralho</li><li>Cerveja</li><li>Rosa amarela</li><li>Glitter dourado</li></ul>
+          <p class="after">Sempre em infusão. Depois do banho, secar as cartas e guardá-las na carteira. Para energia feminina, usam-se as 4 damas; para masculina, os 4 reis.</p>
+        </div>
+        <p>Numa variação, entram também o ímã de ferradura e as moedas no banho.</p>
+        <span class="stamp">Do encontro, via <b>Roberta</b> · 31/05/2025 · <b>Mayra</b> · 03/06/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Banho de mel <span class="qual">— magnetismo</span></h3>
+        <div class="recipe">
+          <div class="when">Depois do banho de higiene</div>
+          <p>Passar mel pelo corpo todo <b>de baixo para cima</b>, dos pés ao cabelo. Sair do banho e firmar uma vela banhada de mel para Oxum, pedindo que os olhares certos te vejam. Vestir uma roupa e tomar quente.</p>
+          <p class="after">“O mel é atrativo, tipo pra TUDO — ele aumenta o magnetismo pessoal.”</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 02/12/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Banho da entrega de Pombagira</h3>
+        <p>Feito com as flores, frutas, champanhe e açúcar da própria entrega de fim de ano — na força delas. Guardar na geladeira e fracionar para tomar quando estiver cansada, desvitalizada ou precisando de firmeza.</p>
+        <span class="stamp"><b>Mayra</b> · 08/12/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Chás, farinhas e apoio de corpo</h3>
+        <p><b>Chá de melissa</b> antes de dormir (30/05/2026). <b>Chá de anis estrelado com rosa branca</b> antes de dormir, no preceito (25/11/2024). <b>Chá de artemísia</b> ou de anis estrelado para TPM e cabeça agitada (02/07/2025). <b>Chá de elevante com alecrim</b> ao acordar (30/05/2026). <b>Chá de alecrim</b> ajuda na concentração (09/11/2025). <b>Chá de picão</b> para infecção urinária (07/02/2025).</p>
+        <p><b>Depurativo do sangue</b>: inhame com maracujá (27/06/2026). <b>Shot</b>: suco de um limão, uma colher de sobremesa de açafrão e 21 gotas de própolis — “limpa tudo e fortalece”, mas elimina gordura e pode dar diarreia (12/11/2025). <b>Farinha para energia e ganho de peso</b>: 50 g de cada — beterraba em pó, farinha de amendoim e farinha de guaraná (24/08/2026); a versão de Marilene, indicada pelo Vô, inclui gengibre e catuaba em pó (31/08/2026). <b>Cebola cortada num prato no quarto</b> o dia todo, retirada na hora de dormir: purifica o ar e ajuda na respiração (19/06/2025).</p>
+        <span class="stamp">Todo o período · 2024–2026</span>
+      </div>
+    </section>
+
+    <!-- 03 -->
+    <section class="sec" id="firmezas">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Firmezas e feitiços</h2></div>
+      <p class="sec-note">O que se acende, com o quê, e o sentido de cada elemento — quando a conversa explicou o sentido.</p>
+
+      <div class="entry">
+        <h3>A maçã costurada <span class="qual">— agradecimento à Pombagira</span></h3>
+        <p>O feitiço mais detalhado dos dois grupos, ensinado com o fundamento de cada ingrediente.</p>
+        <div class="recipe">
+          <div class="when">Depois das 18h · despachar no dia seguinte, aos pés de uma árvore frutífera</div>
+          <ul>
+            <li><b>1 maçã grande e bonita</b> — na magia simboliza sedução e sabedoria, muito ligada ao feminino: cortada na vertical parece um órgão sexual feminino. Pela cor, aroma e sabor desperta os sentidos, e por ser fruto com sementes também traz prosperidade.</li>
+            <li><b>1 linha de costura na cor do seu desejo</b> — amarela: progresso material; vermelha: sedução e paixão; roxa: conexão espiritual; rosa: amor; dourada: glamour.</li>
+            <li><b>1 agulha</b></li>
+            <li><b>1 garrafa de vinho</b> — vitalidade, afrodisíaco; na Grécia antiga era forma de se comunicar com os deuses, ligado a Dionísio. Alguns alquimistas acreditavam que o vinho com os elementos certos virava elixir e proporcionava conexão com o plano espiritual.</li>
+            <li><b>Mel</b> — adoça, esquenta, é magnético.</li>
+            <li><b>Canela</b> — erva solar; intensifica processos, atrai prosperidade e proteção, elimina a frieza.</li>
+            <li><b>Uma carta escrita a punho</b>, AGRADECENDO à sua moça pelo caminho até aqui.</li>
+          </ul>
+          <p class="after"><b>Modo de fazer:</b> cortar a tampa da maçã e raspar o miolo. Colocar dentro a carta dobrada com a escrita para fora, cobrir com mel e costurar a tampa de volta. Pôr a maçã numa panela, cobrir com vinho, regar com mel, acrescentar um pedaço de canela e cozinhar. Depois de cozida, entregar no cantinho onde você cuida da sua entidade, com uma vela em cima (de preferência da cor do seu pedido) e um cigarro. O vinho que sobrar do cozimento se divide: um pouco na taça dela, um pouco num copo para você.</p>
+          <p class="after">Armada a oferenda, <b>tomar um banho de água normal, se vestir bem bonita</b>, e só então sentar em frente a ela para beber e conversar, agradecendo tudo que ela te deu até aqui.</p>
+        </div>
+        <blockquote>
+          <p>Por mais simples que isso pareça, é muito precioso: o fato da gente se arrumar pra agradar quem cuida da gente, de nos conectarmos agradecendo e não só pedindo, de querermos estar bonitas e no nosso melhor estado pros nossos — eles valorizam isso.</p>
+        </blockquote>
+        <p>Mayra pede que a primeira vez seja sempre para agradecer, e diz que a oferenda pode depois ser feita com muitos intuitos: “escrevam no caderno de feitiço de vocês”.</p>
+        <span class="stamp"><b>Mayra</b> · 29/10/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>O padê da primeira segunda do mês</h3>
+        <div class="recipe">
+          <div class="when">Primeira segunda-feira do mês · alguidar separado, só para Exu</div>
+          <p>Escrever o nome completo num papel <b>7 vezes, a lápis</b>. Cobrir com açúcar, e por cima <b>7 gemas</b>. Deixar no alguidar junto com um copo de água e uma vela, sob a luz da lua.</p>
+          <p class="after">Pedir um mês próspero, com muito crescimento; pedir visibilidade, crescimento, e que atraia olhares prósperos por onde passarmos. Pedir também por todas as pessoas da comunidade.</p>
+          <p class="after">Deixar 3 dias no local, em intenção da sua moça. Para despachar, bater o alguidar 3 vezes no chão, agradecer, e descartar dentro de uma sacola com o lixo comum.</p>
+        </div>
+        <p>Instrução de 7 Navalhas, trazida por Mayra e anotada por Marilene na primeira mensagem do grupo mais antigo.</p>
+        <span class="stamp">7 Navalhas, via <b>Má</b> · 14/09/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>O pão e a rapadura <span class="qual">— feitiço de Preto-Velho</span></h3>
+        <div class="recipe">
+          <div class="when">Segunda-feira · o pão fica 3 dias no altar</div>
+          <ul>
+            <li>Um galho de erva da sua intuição</li><li>Um pão</li><li>Uma vela</li><li>Rapadura</li>
+            <li>Um copo de café sem açúcar, feito na hora e feito por você</li><li>O terço deles</li>
+          </ul>
+          <p class="after">Escrever num papel o seu nome e, em cima do nome, todas as glórias que você <b>vai</b> alcançar ainda essa semana — matéria, comportamento ou saúde. Colocar esse papel dentro do pão e encher o pão de rapadura, pedindo que os velhos adocem a vida e ajudem na sabedoria para alcançar as metas. Colocar o terço na firmeza e enfeitar com os galhinhos de erva. No terceiro dia, deixar o pão num jardim bonito.</p>
+          <p class="after">Conversar com os velhos, pedir fé, relaxar o corpo, e falar até o que se tem vergonha de dizer em voz alta.</p>
+        </div>
+        <blockquote>
+          <p>O pão representa o sustento, a fartura e a concretização dos caminhos; a rapadura simboliza o adoçamento da vida, por mais dura que ela seja, ela derrete. O pão é uma massa que expande, que cresce — e isso é prosperidade. Sempre que fizerem um feitiço e precisarem desse desenvolvimento, vocês podem incluir pão.</p>
+        </blockquote>
+        <p>A versão simples, dada antes: firmeza de vela com café e pão, e dentro do pão um papelzinho com os pedidos.</p>
+        <span class="stamp"><b>Mayra</b> · 20/07/2026 e 08/06/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Firmeza dos Pretos-Velhos com decreto de limpeza</h3>
+        <p>Acender os Pretos-Velhos e Pai João de Angola. A vela acesa para eles é uma vela com a qual você <b>caminha pela casa</b>, fazendo decretos de limpeza e pedindo a limpeza do espaço físico — com foco no quarto. Ao lado das velas, um copo de água; o café servido normalmente. Depois de feito, tomar um banho.</p>
+        <p>Na versão de agosto, entra a defumação: bater folhas pela casa como benzimento e queimar casca de alho, casca de cebola e guiné.</p>
+        <span class="stamp"><b>Mayra</b> · 17/08/2026 e 21/07/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>A vela que limpa e a vela que eleva</h3>
+        <p>Com energia baixa: banho de manjericão do pescoço para baixo; depois passar uma vela pelo corpo todo <b>da cabeça aos pés</b>, quebrar e jogar fora. Em seguida, passar outra vela <b>de baixo para cima</b>, para elevar a energia e firmá-la.</p>
+        <blockquote><p>Vela de cima para baixo para limpar; de baixo para cima para elevar a energia.</p></blockquote>
+        <span class="stamp">Do encontro, via <b>Má</b> · 03/12/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Alimentar os seus com o que te alimenta</h3>
+        <blockquote>
+          <p>Quando vocês fizerem uma comida novinha, tirem um prato — de preferência de ágata — e deem de comer para a entidade de vocês. Esse fundamento é muito bonito porque fala sobre alimentar os seus com o que você se alimenta. Não precisa pedir nada, não precisa fazer nada, só oferecer aos seus o que te alimenta.</p>
+        </blockquote>
+        <p>Não tem dia certo. Mayra faz com os Exus, com o Boiadeiro e com o Preto-Velho, e gosta de sentar e almoçar junto. “Exu é a boca do mundo e come tudo — então o que mata a sua fome e te satisfaz é o que alimenta Exu.”</p>
+        <span class="stamp"><b>Mayra</b> · 20/06/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Consagrar uma imagem</h3>
+        <p>Lavar a imagem com café bem forte e sem açúcar, acender uma vela na frente e dedicá-la à linha — no caso, a de Pretos-Velhos. “Nada que você não dê poder tem.”</p>
+        <span class="stamp"><b>Mayra</b> · 15/10/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>O ponto cantado é prece</h3>
+        <blockquote>
+          <p>Canto também é louvor, e uma manifestação de fé. O ponto cantado é uma prece, uma forma de invocação. São verdadeiros mantras, preces, rogativas, que dinamizam forças e criam um ambiente energético propício para a aproximação da entidade.</p>
+        </blockquote>
+        <p>A orientação prática: cantar alto, bater palma, cantar o ponto que vier no coração, sem vergonha, apenas sentindo — e depois relatar como se sentiu.</p>
+        <span class="stamp"><b>Mayra</b> · 18/11/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>O povo da Lira <span class="qual">— firmeza mensal</span></h3>
+        <div class="recipe">
+          <div class="when">Toda primeira terça-feira do mês</div>
+          <ul><li>Uma vela</li><li>Um copo de cerveja</li><li>Os pedidos financeiros embaixo do copo</li></ul>
+          <p class="after">“A cerveja é um expansor, e é para melhorar finanças.” O primeiro mês serve para começar a acostumar com a energia. Dama da Noite e Maria Navalha continuam na segunda-feira, separadas.</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 01/09/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Ori — a quartinha</h3>
+        <p>Cada uma tem uma <b>quartinha de louça branca com asa</b> para o Ori. A prática diária, como Ana descreveu e o grupo adotou: pegar a quartinha, conversar com o Ori, dizer que ama, e pedir — saúde, felicidade, prosperidade, maturidade. Depois pegar um pouco da água e passar na cabeça. Em momentos de descarrego, lavar a cabeça com a água da quartinha.</p>
+        <p>Mayra faz a distinção: cuidar do Ori <b>não é bori</b>. “Bori é outra coisa completamente diferente.”</p>
+        <span class="stamp"><b>Ana</b> · 17/02/2025 · <b>Mayra</b> · 07/02 e 17/02/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Firmezas pequenas do dia a dia</h3>
+        <ul>
+          <li><b>Anjo da guarda:</b> vela branca de 7 dias firmada permanentemente; acesa também antes de sair de casa para qualquer encontro.</li>
+          <li><b>Crianças:</b> uma vez por mês, no sábado — 3 balinhas, um copo de guaraná e uma vela. Em 27/09, dia de Cosme e Damião, o mesmo.</li>
+          <li><b>3 folhas de louro na carteira</b> — pedido da Pombagira da Nana (10/02/2025).</li>
+          <li><b>Ao mexer com a cabeça</b> — tranças, dreads, qualquer pessoa pondo a mão na sua cabeça: pedir que a pessoa lave as mãos com água de louro (09/02/2025).</li>
+          <li><b>Contra-egum</b> mantido no corpo, principalmente na quaresma, em agosto e no sábado de aleluia.</li>
+          <li><b>Boldo no travesseiro</b>, de preferência sempre úmido e tampado, durante agosto (04/08/2025). E <b>espada-de-são-jorge com folhas de guiné</b> no travesseiro, contra pesadelos (17/08/2026).</li>
+          <li><b>Ao sair de casa no carnaval:</b> jogar um copo de água na rua pedindo a Exu para esfriar o caminho por onde você passar; firmar o Exu de frente e uma vela; imaginar um escudo de proteção ao redor antes de sair. “Alimentem a rua para que a rua não se alimente de vocês” (28/02/2025).</li>
+          <li><b>Sair sempre com o pé direito</b>, consagrando o dia à sua criança e pedindo o encanto de criança (21/07/2026).</li>
+        </ul>
+        <span class="stamp">Todo o período · 2024–2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Oração de Santa Helena <span class="qual">— revelação em sonho</span></h3>
+        <p>Mayra apresenta com uma ressalva explícita: <i>“isso não tem nada a ver com Umbanda ou Candomblé, é conhecimento esotérico, e eu senti de passar pra vocês porque é muito forte e sempre me auxilia.”</i> Santa Helena é conhecida como a santa das revelações — achou a cruz de Jesus e teve um sonho profético sobre o filho.</p>
+        <div class="recipe">
+          <div class="when">Antes de dormir</div>
+          <p>“Oh, minha Santa Helena dos Gentios, vós vistes Cristo a favor do mar, vós fizestes uma cama debaixo de um pé de junco verde e nela deitou-se, e dormiu e sonhou que o vosso filho Constantino era Imperador em Roma.</p>
+          <p class="after">Assim, pois, minha nobre senhora, como o vosso sonho foi verdadeiro, vós mostrai-me em sonho… <i>[pergunte o que deseja que seja revelado]</i>.</p>
+          <p class="after">Se isso tiver de acontecer, mostrai-me casa clara, igreja aberta, mesa bem ornada, campo verde e florido, luz acesa, água limpa e corrente ou roupa lavada. Se isso não tiver de acontecer, mostrai-me casa escura, igreja fechada, mesa desarrumada, campo seco, luz apagada, água turva ou roupa suja. Amém.”</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 03/04/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>As sementes do padê</h3>
+        <p>Depois da entrega: parte das sementes se enterra, devolvendo à terra aquilo que é dela. A outra parte se lava e se deixa secar. Secas, podem ir na carteira para atrair prosperidade, ser batidas com outras sementes para fazer um pó de abundância, ou guardadas como amuleto.</p>
+        <span class="stamp"><b>Mayra</b> · 08/12/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Onde ficam as entidades na casa</h3>
+        <p>Exu Caveira e Brasinha vão no portão ou na entrada — pedido enfático do próprio Caveira em terra. O 7 fica em qualquer outro lugar. Exu tem alguidar separado e fica <b>fora</b> de casa; as demais linhas podem ficar dentro. A firmeza de cada uma organizada dentro de uma caixa. Cada casa monta um altarzinho para os mentores, com imagem de um casal de Pretos-Velhos e a velinha sempre acesa.</p>
+        <span class="stamp"><b>Mayra</b> · 27/09/2024, 09/10/2024, 15/06/2026 · <b>Roberta</b> · 20/07/2026</span>
+      </div>
+    </section>
+
+    <!-- 04 -->
+    <section class="sec" id="ebos">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Ebós e limpezas</h2></div>
+
+      <div class="entry">
+        <h3>Ebó dos 3 ovos na encruzilhada</h3>
+        <div class="recipe">
+          <div class="when">Depois das 18 horas</div>
+          <p>Ir até uma encruzilhada e passar 3 ovos pelo corpo, da cabeça aos pés — <b>sempre de cima para baixo</b>. Em seguida, quebrar os ovos jogando-os para trás. Ao fazer isso, dizer que está quebrando todas as mazelas, todas as quizilas e tudo aquilo que suja e atrasa a vida. Voltar para casa <b>sem olhar para trás</b>.</p>
+          <p class="after">Ao chegar: banho de carqueja, arruda e guiné, do pescoço para baixo. Depois, vela ao Ori.</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 10/06/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Ler o resultado do ebó</h3>
+        <p>Mayra escreveu nos ovos o que queria que Mulambo levasse embora. Ao despachar, viu que só alguns ovos tinham estourado — exatamente esses. Registrou como ensinamento:</p>
+        <blockquote><p>A magia está sempre nos detalhes. Sempre que vocês ofertarem as coisas, fiquem observando tudo.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 17/07/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Sacudimento</h3>
+        <div class="recipe">
+          <div class="when">Ritual coletivo · dia inteiro, sem sair depois</div>
+          <ul>
+            <li>Canjica</li><li>Pipoca</li><li>Farinha de mandioca branca</li>
+            <li>1 litro de água mineral</li><li>Velas</li><li>Pólvora</li>
+          </ul>
+          <p class="after">Levar: toalha, <b>roupa que possa ser despachada</b> e outra roupa para voltar para casa. Antes de sair, acender vela para o anjo da guarda. Por ser limpeza, não se sai depois — vai direto para casa. Despacho em lugar de água corrente.</p>
+        </div>
+        <p>A versão de dezembro de 2024 usava também 42 ovos, TNT, algodão e velas de 7 dias, com banho de boldo, água de canjica e efun ralado.</p>
+        <span class="stamp"><b>Mayra</b> · 09/11/2024 e 09/10/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Os quatro rituais de família</h3>
+        <p>Depois que todas trouxeram questões familiares no pós-corte, Mayra jogou para cada uma e montou um conjunto:</p>
+        <div class="recipe">
+          <div class="when">09/07/2026</div>
+          <ul>
+            <li><b>Limpeza e desobstrução de caminhos com Brasinha</b> — nomes incluídos no corte do dia. “Acredito muito em cada gota de ejé derramada e na força que esse movimento tem para romper estagnações.”</li>
+            <li><b>Canjica para Oxalá</b> — para apaziguar as cabeças e equilibrar os caminhos. Material: canjica e azeite de oliva.</li>
+            <li><b>Obará</b> — prosperidade, comércio, plantio e colheita. Material: grãos e abóbora.</li>
+            <li><b>Padê ancestral</b> — um padê para cada Exu homem, em intenção às famílias. Material: gin e farinha. “Um padê simples, para acordar Exu e colocar a gira em movimento em favor da segurança e do fortalecimento das famílias.”</li>
+          </ul>
+        </div>
+        <blockquote><p>Quando a gente trabalha com Exu, acessamos uma força ancestral, e essa força nos conecta diretamente às nossas raízes, à nossa linhagem, ao nosso passado e à nossa história.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 09/07/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Limpeza de lua minguante <span class="qual">— minguar os medos</span></h3>
+        <div class="recipe">
+          <div class="when">Lua minguante · em semana de sonhos ruins</div>
+          <p>Passar uma vela pelo corpo todo, da cabeça aos pés, focando muito na <b>coluna e na nuca</b>. Firmar essa vela na porta de casa com um copo de água com sal e alho, e pedir à lua minguante que mingue os seus medos — e o que mais você quiser que mingue.</p>
+          <p class="after">Complemento: banho de casca de alho e alecrim; muita água; ocupar a cabeça com outras coisas e ouvir músicas alegres.</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 19/06/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Ebó à distância</h3>
+        <p>Quando alguém não pode ir ao encontro, o trabalho é feito com uma peça de roupa da pessoa. Foi assim com Marilene em julho de 2026 — “também foi retirado o ebó da sua roupa; deu tudo certinho”.</p>
+        <span class="stamp"><b>Mayra</b> · 14/07/2026 e 20/07/2026</span>
+      </div>
+    </section>
+
+    <!-- 05 -->
+    <section class="sec" id="pades">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Padês, balaios e cortes</h2></div>
+      <p class="sec-note">A parte mais material da prática: as listas. Estão aqui porque a composição do padê <i>é</i> o fundamento — o que se coloca, para quem, e por quê.</p>
+
+      <div class="entry">
+        <h3>A base de cada padê</h3>
+        <div class="twrap">
+          <table>
+            <thead><tr><th>Para quem</th><th>Base</th></tr></thead>
+            <tbody>
+              <tr><td>Exu homem</td><td class="bicho">Farinha de mandioca + dendê</td></tr>
+              <tr><td>Pombagira</td><td class="bicho">Farinha de milho + mel</td></tr>
+              <tr><td>Padê de carne</td><td class="bicho">1 bife de porco (limpeza) + 1 bife de boi, a carne melhor (prosperidade)</td></tr>
+              <tr><td>Tiriri</td><td class="bicho">Com cebola e alho — corta vampirismo energético</td></tr>
+              <tr><td>Trança Ruas</td><td class="bicho">Com folha de manga — renovação</td></tr>
+              <tr><td>Marabô</td><td class="bicho">Com laranja e chaves — sorte e vitalidade</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 10/11/2025 e 10/07/2026 · <b>Lívia</b> · 18/07/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Balaio de Exu e Pombagira <span class="qual">— o fechamento do ano</span></h3>
+        <p>O ritual mais elaborado do calendário, feito no fim de novembro nos dois anos. Cada uma monta dois alguidares — um para Exu, um para Pombagira.</p>
+        <div class="recipe">
+          <div class="when">Obrigatório em todo padê do balaio</div>
+          <ul>
+            <li>Vela de chave amarela — uma para cada</li>
+            <li>Pacote de velas brancas</li>
+            <li>Incenso</li>
+            <li>Frutas</li>
+            <li>Moedas</li>
+            <li>Brilhos</li>
+            <li>Búzios abertos</li>
+            <li>Rosas</li>
+            <li><b>Carta de manifestação</b>, escrita a punho</li>
+          </ul>
+          <p class="after">Livre: a fruta, a cor das rosas, o brilho — “cada uma sabe o que sua entidade gosta”. Bebida: uma para o Exu, uma para a Pombagira; pode ser a mais em conta, porque vai ser despachada. Fumo: cigarro no coletivo; charuto à parte para quem tem Exu que usa.</p>
+        </div>
+        <p>No balaio de 2024 entravam também pó de ouro, essência de lírio, champanhe, gin, bombons e uma cesta que coubesse os dois alguidares. Em 2025 a lista foi enxugada: “evitem exageros para não desperdiçar nem gastar demais”.</p>
+        <span class="stamp"><b>Mayra</b> · 10/11/2025 e 09/10/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Oferenda da direita <span class="qual">— Caboclo, Preto-Velho e Boiadeiro</span></h3>
+        <div class="recipe">
+          <div class="when">Início de dezembro · roupa branca de ração</div>
+          <ul>
+            <li>3 abóboras cozidas — ao dente</li>
+            <li>500 g de carne cozida e desfiada</li>
+            <li>1 broa de fubá ou de milho</li>
+            <li>7 pães franceses</li>
+            <li>7 frutas doces, de qualidades diferentes</li>
+            <li><b>7 qualidades de grão:</b> arroz, lentilha, grão-de-bico, semente de girassol, milho, alpiste e canjica</li>
+            <li>Cerveja e café que deem para 7 copos</li>
+            <li>Charutos, cigarro de palha, fumo de rolo, fumo de cachimbo</li>
+            <li>Búzios, incenso, velas, pipoca, mel, folhas de manga</li>
+          </ul>
+          <p class="after">Levar o <b>cachimbo</b> e o banquinho. E a <b>carta de agradecimento</b> — agradecendo tudo de bom que aconteceu no ano, inclusive os pequenos milagres.</p>
+        </div>
+        <p>Na versão de 2024, o encontro da direita pedia 7 frutas por pessoa, vinho tinto, guaraná, abóbora moranga, broa, bolo de criança, pão francês, incenso e rosas brancas.</p>
+        <span class="stamp"><b>Mayra</b> · 01/12/2025 e 09/11/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Comida de Orixá</h3>
+        <div class="recipe">
+          <div class="when">Para Exu, Ogum, Oxóssi, Iansã, Oxum, Oxalá e Tempo</div>
+          <ul>
+            <li>4 alguidares número 4</li><li>1 pacote de feijão preto</li><li>1 pacote de feijão fradinho</li>
+            <li>½ kg de farinha de acarajé</li><li>½ kg de milho para cozinhar</li>
+            <li>1 pacote de canjica</li><li>1 pacote de pipoca</li><li>700 g de camarão seco</li>
+          </ul>
+          <p class="after">Exu se entrega na rua; os demais Orixás ficam na salinha.</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 09/10/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Comida de boteco <span class="qual">— para a linha dos malandros</span></h3>
+        <p>Cada uma prepara e leva um prato típico de boteco, <b>feito por si mesma</b>, para ser ofertado às entidades. “Não precisa ser muito, nem pouco, mas de forma que sirva a nós e aos mortos.” O que sobra vira marmitex, doado na saída.</p>
+        <p>O cardápio de outubro de 2025: linguiça, mandioca e torresmo; farofa (de preferência com linguiça de porco); bolinho de bacalhau; tilápia empanada; bolinho de carne moída e frango à passarinho. Mayra ofereceu alternativas baratas para cada uma — ovo de codorna cozido, bolinho de arroz, bolinho de mandioca.</p>
+        <span class="stamp"><b>Mayra</b> · 23/09 e 01/10/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Cortes — a tabela de bichos</h3>
+        <blockquote><p>Quando você dá bicho a Exu geralmente tem sentido. A franga preta é para quebra de feitiço e tal. Vocês tomem cuidado por não ir pelo ÓBVIO.</p></blockquote>
+        <div class="twrap">
+          <table>
+            <thead><tr><th>Entidade</th><th>Médium</th><th>Bicho</th></tr></thead>
+            <tbody>
+              <tr><td>Marabô</td><td>Lívia</td><td class="bicho">Galo pequeno rajado</td></tr>
+              <tr><td>Boiadeiro (Zé do Laço)</td><td>Roberta</td><td class="bicho">Galo pequeno rajado</td></tr>
+              <tr><td>Maria Padilha</td><td>Ellen</td><td class="bicho">Franga preta</td></tr>
+              <tr><td>Trança Ruas</td><td>Ellen</td><td class="bicho">Galo pequeno, qualquer cor</td></tr>
+              <tr><td>Maria Mulambo do Cruzeiro das Almas</td><td>—</td><td class="bicho">2 frangas: uma vermelha e uma preta</td></tr>
+              <tr><td>Exu Caveira</td><td>—</td><td class="bicho">Galo rajado preto e branco (come junto com Marabô)</td></tr>
+              <tr><td>Dona Rosa</td><td>Lívia</td><td class="bicho">Franga preta</td></tr>
+              <tr><td>Dama da Noite</td><td>Roberta</td><td class="bicho">Franga preta</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>No dia: todas de <b>roupa branca</b>, banho de pipoca e sacudimento de folhas. Quem dá corte precisa de um alguidar a mais — número 0 — além de gin e do bicho.</p>
+        <span class="stamp"><b>Mayra</b> · 24/06, 09/07 e 15/06/2026 · <b>Lívia</b> · 18/07/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Protocolo do dia do corte</h3>
+        <div class="recipe">
+          <div class="when">Anotações do encontro</div>
+          <ul>
+            <li>Mesa bonita no dia do corte</li><li>Bater cabeça para os homens</li>
+            <li>Charuto para todos e para o Boiadeiro</li><li>Pipoca, bastante, no dia</li>
+            <li>Ebó de saúde no corte dos homens</li><li>Entregar na calunga</li>
+            <li>Não vem mulher no dia</li><li>Todo mundo com disponibilidade no dia</li>
+          </ul>
+        </div>
+        <span class="stamp"><b>Lívia</b>, anotações do encontro · 18/07/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>A mão que corta</h3>
+        <blockquote><p>O axé vem da mão que corta.</p></blockquote>
+        <p>Quem tem mão de corte é o Ogã. A cobrança pelo serviço aparece separada do custo do bicho — nas contas do grupo, “mão de corte” foi sempre uma linha própria. Mayra recebeu a sua mão de corte de Dona Maria Mulambo da Lata de Lixo.</p>
+        <span class="stamp"><b>Mayra</b> · 23/07/2026 e 25/02/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Ler a oferenda depois</h3>
+        <p>A checagem do dia seguinte faz parte do trabalho: “o de Pombagira suspendi ontem, e não tava com nenhum mal cheiro, tava até muito bonito”. Mayra também pergunta sempre, no pós-corte, se está todo mundo bem — cansaço físico e corpo pesado são tratados como normais.</p>
+        <span class="stamp"><b>Mayra</b> · 30/06/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>O que se come e o que se descarta</h3>
+        <blockquote>
+          <p>Apenas comidas de LIMPEZA devem ser descartadas. Comidas que damos para nossos Orixás em comemoração e agradecimento podem ser comidas ou usadas como banho por nós, como forma de potencializar nosso axé. Alimentos dados para Exu, como são colocados fora de casa, não se costuma comer por conta da possibilidade de bichos passarem por eles — mas, não sendo de limpeza, funciona da mesma forma.</p>
+        </blockquote>
+        <span class="stamp">Do encontro, via <b>Má</b> · 27/06/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Onde comprar</h3>
+        <p>Regra da casa: comprar de fornecedor conhecido, porque a carne é aproveitada como alimento depois do ritual — “como fazemos alimentos pós-ritual, eu gosto que sejam animais saudáveis”. O grupo mantinha contatos de aviários, encomendava com antecedência e pedia foto antes. Sobre búzios comprados online, Mayra vetou por suspeita de serem artificiais: “pelo formato e tudo mais”.</p>
+        <span class="stamp"><b>Mayra</b> · 15/06/2026 e 12/11/2025</span>
+      </div>
+    </section>
+
+    <!-- 06 -->
+    <section class="sec" id="ervas">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Ervas e elementos</h2></div>
+      <p class="sec-note">As propriedades como o grupo as registrou. As três primeiras vieram de um exercício de junho de 2026: cada uma escolheu três ervas por intuição para o perfume da sua Pombagira e depois foi atrás do que cada uma significa.</p>
+
+      <div class="entry">
+        <h3>Rosa vermelha <span class="qual">— Oxum e Iemanjá</span></h3>
+        <p>Erva do amor, da beleza e da atração. Usada em banhos para despertar o amor, a autoestima e a prosperidade sentimental. Energia feminina poderosa; eleva a vibração do coração. Também entra como vitalidade nos banhos de reposição.</p>
+        <p><b>Síntese de Mayra:</b> magnetismo.</p>
+        <span class="stamp"><b>Má</b> e <b>Mayra</b> · 24/06/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Hera terrestre <span class="qual">— Obaluaê</span></h3>
+        <p>Erva de proteção e cura. Fixa energias positivas, enraíza espiritualmente e protege de influências negativas. A característica de se espalhar e criar raízes facilmente simboliza firmeza e estabilidade.</p>
+        <p><b>Síntese de Mayra:</b> segurança, demarcação de território, fertilidade.</p>
+        <span class="stamp"><b>Má</b> e <b>Mayra</b> · 24/06/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Perpétua branca <span class="qual">— Oxalá, Caboclos e Pretos-Velhos</span></h3>
+        <p>Erva da paz e da limpeza espiritual. Limpa a energia do corpo e do ambiente, traz elevação, clareza e proteção da luz. O nome vem de as flores manterem a aparência muito tempo depois de colhidas — por isso associada à permanência da luz e da fé.</p>
+        <p><b>Síntese de Mayra:</b> permanência, resistência, luz. Com a ressalva dela: “não achei nada nos meus livros de perpétua branca. Só roxa.”</p>
+        <span class="stamp"><b>Má</b> e <b>Mayra</b> · 24/06/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>As quatro ervas de base</h3>
+        <p><b>Manjericão</b> — limpa e renova; repõe energia. É a erva mais recorrente dos dois grupos, presente em pelo menos oito receitas. <b>Alecrim</b> — protetor e purificador; renova energia e traz alegria; ajuda na concentração. <b>Boldo</b> — limpa, acalma, purifica, eleva. <b>Guiné</b> — a erva de limpeza forte: banho pós-ebó, fim de quaresma, virada de ano, defumação e travesseiro contra pesadelos.</p>
+        <span class="stamp"><b>Mayra</b> · 20/09/2024 e 07/04/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>As demais em uso</h3>
+        <p><b>Arruda</b> · <b>carqueja</b> · <b>hortelã</b> · <b>hibisco</b> · <b>folha de pitanga</b> · <b>rosa branca</b> · <b>casca de laranja</b> · <b>casca de alho</b> e <b>casca de cebola</b> · <b>canela em pau</b> · <b>cravo-da-índia</b> · <b>anis estrelado</b> · <b>artemísia</b> · <b>alfazema</b> · <b>calêndula</b> · <b>folha de louro</b> · <b>abre-caminho</b> · <b>peregun</b> · <b>couve</b> · <b>capim-cidreira</b> · <b>melissa</b> · <b>mirra</b> · <b>sálvia</b> · <b>lavanda</b> · <b>camomila</b> · <b>espada-de-são-jorge</b> · <b>folha de mamona</b> · <b>folha de manga</b> · <b>girassol</b> · <b>fava de Oxum</b> · <b>oriri</b> · <b>embaúba</b>.</p>
+        <span class="stamp">Levantado em todo o período · 2024–2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Elementos não vegetais e seus sentidos</h3>
+        <ul>
+          <li><b>Mel</b> — adoça, esquenta, é magnético; aumenta o magnetismo pessoal.</li>
+          <li><b>Canela</b> — erva solar; intensifica processos, atrai prosperidade e proteção, elimina a frieza.</li>
+          <li><b>Vinho</b> — vitalidade, afrodisíaco, conexão com o plano espiritual.</li>
+          <li><b>Maçã</b> — sedução, sabedoria, feminino, prosperidade (fruto com sementes).</li>
+          <li><b>Pão</b> — sustento, fartura, concretização; massa que expande é prosperidade.</li>
+          <li><b>Rapadura</b> — adoçamento da vida, por mais dura que ela seja.</li>
+          <li><b>Pipoca</b> — transformação: entra milho, sai pipoca.</li>
+          <li><b>Cerveja</b> — expansor; usada para finanças.</li>
+          <li><b>Dendê</b> — energia quente; potencializa a limpeza.</li>
+          <li><b>Sal grosso</b> e <b>cachaça</b> — proteção, na oferenda ao casal de Exus.</li>
+          <li><b>Quiabo</b> — quebra de feitiço. “Quem come quiabo não pega feitiço.”</li>
+          <li><b>Moedas, búzios abertos e brilho</b> — prosperidade e visibilidade nos padês.</li>
+          <li><b>Poeira de estrada</b> e <b>terra de encruzilhada</b> — pedidas para os assentamentos.</li>
+          <li><b>Álcool de cereais</b> — a base obrigatória de todo perfume de entidade.</li>
+        </ul>
+        <span class="stamp">Todo o período · 2024–2026</span>
+      </div>
+    </section>
+
+    <!-- 07 -->
+    <section class="sec" id="guias">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Guias, roupa e objetos</h2></div>
+
+      <div class="entry">
+        <h3>Fuja do óbvio</h3>
+        <blockquote>
+          <p>A sua Pombagira pode sim querer uma guia de cor diferente das tradicionais. A sua Pombagira pode sim querer uma erva que você ache nada a ver, mas que tenha a ver com o fundamento DELA. Fujam do óbvio — Pombagira é mistério.</p>
+        </blockquote>
+        <p>É o princípio central de como o grupo monta guia, perfume e oferenda: a informação vem da entidade, não do que se espera dela. Marilene confirmou na prática — “fui na intuição e algumas coisas que achei que não iriam fazer sentido ela quis, e as que achei que iria ela não quis”.</p>
+        <span class="stamp"><b>Mayra</b> · 23/06/2026 · <b>Má</b> · 26/06/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>O que é fundamento de entidade</h3>
+        <p>Roberta trouxe ao grupo, a pedido de Mayra, a explicação do que se está pedindo quando se pede o fundamento:</p>
+        <blockquote>
+          <p>Cada elemento tem que ter um porquê de estar nesse espaço. Quem for preparar uma quartinha: vai ter uma bebida? Vai ter poeira da rua, terra de cemitério? Um búzio? Uma moeda? Tudo isso podem ser elementos que a entidade vai trabalhar e que precisa de um fundamento. E não só os elementos maiores, mas também como vai ser a roupa, as cores, como vai ser a guia.</p>
+        </blockquote>
+        <p>O grupo pede às entidades, e Mayra confirma no jogo — “porque como somos médiuns muito iniciantes, pode ser que a gente passe na frente em algum momento”.</p>
+        <span class="stamp"><b>Roberta</b>, repassando Mayra · 10/10/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Como pedir a intuição</h3>
+        <p>Método dado a quem não estava conseguindo ouvir: <b>sentar em frente à firmeza dela e colocar um som do mar.</b> Se mesmo assim não vier, tudo bem — “se ela não quiser mostrar agora também não é um problema, no tempo dela”. Nesse caso, quem conduz faz uma firmeza pedindo por você.</p>
+        <p>Quando o grupo inteiro ficou perdido, em 2024, Mayra suspendeu as guias personalizadas e mandou todas fazerem uma <b>guia de Exu padrão, com miçanga vermelha e preta</b>, vibrando a linha: “vamos começar do básico, pra não pular etapas”.</p>
+        <span class="stamp"><b>Mayra</b> · 22/06/2026 e 09/11/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Guias registradas</h3>
+        <ul>
+          <li><b>Exu, padrão:</b> miçanga vermelha e preta.</li>
+          <li><b>Malandro:</b> 4 miçangas brancas, 3 vermelhas, fechada com dado.</li>
+          <li><b>Santo (início de 2026):</b> verde e amarela para Lívia e Marilene; cristal transparente para Roberta e Lana.</li>
+          <li><b>Crianças:</b> rosa e azul; a das crianças fica livre para elas escolherem.</li>
+          <li><b>Guia trabalhada</b> se faz com <b>braja</b> — a de Maria Zureta pedida de três pernas.</li>
+          <li>Guia nova se cruza com <b>amaci</b> e com a menga do corte.</li>
+        </ul>
+        <p>Sobre ler uma guia pelo desenho: “preto e branco daquela forma é usado por espíritos que fazem caminhos com o povo das almas” — cruzamento com o povo das almas, da Calunga pequena; pode ser uma Pombagira que resgata almas de mulheres em sofrimento.</p>
+        <span class="stamp"><b>Mayra</b> · 23/09/2025, 07/11/2025, 02/09/2025 e 17/07/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Perfume de encantamento</h3>
+        <div class="recipe">
+          <div class="when">Cura cerca de um mês, em vidro escuro</div>
+          <ul><li>Três ervas vindas da sua intuição</li><li>Álcool de cereais — sempre, se for perfume</li><li>Um vidro escuro para curar</li></ul>
+          <p class="after">Depois de curado, é consagrado. O formulário que Mayra pediu de cada uma: nome completo, data de nascimento, nome da entidade, as 3 ervas do perfume, cor e elementos da guia.</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 15/06 e 24/06/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Roupa</h3>
+        <p><b>Branca</b> para os dias de corte e para os encontros. <b>Chita</b> — saia e pano de cabeça — é roupa de ração, para caboclo. Para encontro de Exu, <b>calça confortável</b>, e evitar brincos, colares e maquiagem: “eu já vi Exu arrancar piercing de médium”. Também: nada de ir maquiada quando Exu vem antes — o batom se leva e se põe na hora da Pombagira.</p>
+        <p>Cada entidade tem a sua roupa completa, e Mayra pede que se chegue bem vestida e com as coisas da entidade organizadas. A pedido da Dama da Noite, uma médium foi orientada a lavar o cabelo na véspera e deixá-lo brilhando: banho de brilho, azeite, e no dia seguinte rezar um salmo que fale de crescimento e força.</p>
+        <p>Sobre química e mudança no corpo: “não é regra, mas tem entidade que enquizila MUITO”. A recomendação é sempre negociar — “conversa com ela falando o quanto seu cabelo é importante pra você… mas que você vai escurecer. Tudo é negociável se você fizer a sua parte, direitinho.”</p>
+        <span class="stamp"><b>Mayra</b> · 24/06/2026, 13/10/2025, 24/08/2026 e 05/11/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Objetos que aparecem</h3>
+        <p><b>Quartinha</b> de louça branca com asa (Ori), <b>alguidar</b> — número 0 para corte, número 3 para padê, número 4 para comida de Orixá —, <b>toco</b> ou banquinho para cada entidade, <b>xícara de ágata</b> e <b>terço</b> para Preto-Velho, <b>cachimbo</b>, <b>copo</b> individual da entidade, <b>punhal ou espada</b> como pingente, <b>coruja de mão</b>, <b>chapéu</b>, <b>cabaça, pandeiro e berimbau</b> (as coisas de 7 Navalhas), <b>véu</b>, <b>anágua</b>, <b>pano de cabeça</b>, <b>camisu</b> e <b>ojá</b>, <b>contra-egum</b>, <b>colar de coral selado</b> (pedido de Araribóia), <b>braja</b>.</p>
+        <span class="stamp">Todo o período · 2024–2026</span>
+      </div>
+    </section>
+
+    <!-- 08 -->
+    <section class="sec" id="calendario">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Calendário</h2></div>
+      <p class="sec-note">O ano ritual como os dois grupos o viveram — do ritmo semanal ao ciclo anual. “O Vô pediu que a gente siga o calendário da Umbanda pra não pular cuidado com nenhum Santo e nos nortear.”</p>
+
+      <h3 class="subhead">Ritmo semanal e mensal</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Quando</th><th>O quê</th></tr></thead>
+          <tbody>
+            <tr><td>Toda segunda-feira</td><td>Dia de cuidar da esquerda — Exu e Preto-Velho. E o ritual do grupo: cada uma escreve agradecimentos e metas da semana</td></tr>
+            <tr><td>Primeira segunda do mês</td><td>Saudar Exu, pedir caminhos. O padê das 7 gemas; frutas doces para Maria Zureta; coisas com muitas sementes para 7 Navalhas</td></tr>
+            <tr><td>Última segunda do mês</td><td>Desobstrução dos caminhos, para que a segunda seguinte encontre caminho limpo</td></tr>
+            <tr><td>Primeira terça do mês</td><td>Povo da Lira — vela, copo de cerveja, pedidos financeiros embaixo</td></tr>
+            <tr><td>Quarta-feira</td><td>Preceito de Mayra para o Nkisi dela</td></tr>
+            <tr><td>Quinta-feira</td><td>Caboclo — vela, vinho ou cerveja, charuto</td></tr>
+            <tr><td>Quinta-feira</td><td>Boiadeiro — vela, cerveja, cigarro de palha ou paiol</td></tr>
+            <tr><td>Sexta-feira, 18h</td><td>Início do preceito, quando há encontro no fim de semana</td></tr>
+            <tr><td>Pelo menos um sábado por mês</td><td>Acender a criança, com um agrado — 3 balinhas, guaraná e vela</td></tr>
+            <tr><td>Diariamente</td><td>Firmar o anjo da guarda; conversar com o Ori; tirar uma carta</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="subhead">Datas do ano</h3>
+      <div class="twrap">
+        <table>
+          <thead><tr><th>Data</th><th>Quem</th><th>Como</th></tr></thead>
+          <tbody>
+            <tr><td>20/01</td><td>Oxóssi</td><td>Oferenda dentro da possibilidade; 3 frutas por pessoa</td></tr>
+            <tr><td>02/02</td><td>Iemanjá</td><td>Frutas claras (uva verde, maçã verde, pêra), rosas brancas, manjar branco. Evitar cítricas</td></tr>
+            <tr><td>Quarta de cinzas → sexta da paixão</td><td>Quaresma</td><td>Ver o protocolo completo abaixo</td></tr>
+            <tr><td>Sexta-feira da paixão</td><td>Maria Zureta e as 7 Marias</td><td>Dia em que elas comem</td></tr>
+            <tr><td>Sábado de aleluia</td><td>“Malhar Judas”</td><td>Dia de muita gente de má fé; contra-egum e vela para o Nkisi</td></tr>
+            <tr><td>23/04</td><td>Ogum</td><td>Vela com copo de cerveja; feijoada</td></tr>
+            <tr><td>24/05</td><td>Santa Sara / povo cigano</td><td>Vela amarela para o povo cigano, branca para a cigana que caminha com você</td></tr>
+            <tr><td>13/06</td><td>Xangô</td><td>Vela com copo de água; oração pedindo misericórdia</td></tr>
+            <tr><td>07/07</td><td>Exu Caveira e 7 Navalhas</td><td>Comem. Vela às 19h; padê de frutas doces para as moças</td></tr>
+            <tr><td>Agosto inteiro</td><td>Omolu / Obaluaê</td><td>Mês pesado. Abre-se com três velas e banho de pipoca no dendê. Defumar a casa 1x/semana</td></tr>
+            <tr><td>Setembro</td><td>As crianças — Nvunji / Ibeji</td><td>Duas velas lado a lado, 3 balinhas de mel, copo de guaraná. Cachoeira com os erês</td></tr>
+            <tr><td>27/09</td><td>Cosme e Damião</td><td>Vela, copo de guaraná, 3 balinhas</td></tr>
+            <tr><td>12/10</td><td>Dia das crianças</td><td>Entrega dos presentes prometidos aos erês</td></tr>
+            <tr><td>31/10</td><td>Dia das bruxas</td><td>Mayra celebra a Pombagira nesse dia; Zureta quer as coisas dela aqui</td></tr>
+            <tr><td>02/11</td><td>Finados</td><td>Costumam ir pelo cemitério</td></tr>
+            <tr><td>Novembro</td><td>Mês de almas</td><td>Omolu e Nanã vibrantes; evitar lugares cheios, reforçar limpeza e Ori</td></tr>
+            <tr><td>Fim de novembro</td><td>Balaio de Exu e Pombagira</td><td>Fechamento do ano com a esquerda</td></tr>
+            <tr><td>04/12</td><td>Santa Bárbara / Iansã</td><td>Vela com copo de água</td></tr>
+            <tr><td>Início de dezembro</td><td>Oferenda da direita</td><td>Caboclo, Preto-Velho e Boiadeiro; carta de agradecimento</td></tr>
+            <tr><td>08/12</td><td>Oxum</td><td>Vela com copo de mel ao lado</td></tr>
+            <tr><td>30 e 31/12</td><td>Virada</td><td>Banho de guiné, depois o banho de abre-caminhos; velas e copo de água para todas as linhas</td></tr>
+            <tr><td>Primeira lua nova do ano</td><td>Banho da Cigana</td><td>Canela, calêndula, louro e abre-caminho</td></tr>
+            <tr><td>Janeiro</td><td>Ori</td><td>Ebó de limpeza; cuidar dos Orixás de cabeça, do regente do ano e das crianças</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="entry" style="margin-top:34px">
+        <h3>Protocolo da quaresma</h3>
+        <div class="recipe">
+          <div class="when">Um dia antes de começar</div>
+          <ul>
+            <li>Limpeza energética na casa toda</li>
+            <li>Padê para os guardiões — quem não tem chave de Exu cuida de Exu Caveira</li>
+            <li>Banho de limpeza no mesmo dia</li>
+          </ul>
+          <p class="after"><b>Material do padê:</b> 2 alguidares · farinha de mandioca · dendê · cachaça · cebola roxa · 2 bifes de porco · 1 charuto · 1 cigarro · 2 copos · folha de mamona. Despachar na quinta-feira.</p>
+        </div>
+        <div class="recipe">
+          <div class="when">Durante os 40 dias</div>
+          <ul>
+            <li>Vela de 7 dias para Exu, mantida acesa o tempo todo</li>
+            <li>Contra-egum todo dia</li>
+            <li>Banho de limpeza</li>
+            <li>Fechamento de corpo — a oração do Vô, todo dia</li>
+            <li>Manter as orações e a quartinha</li>
+            <li><b>Tampar os Santos com pano roxo.</b> Não se acende Santo na quaresma — quem quiser acender, acende na véspera</li>
+          </ul>
+        </div>
+        <p>Sobre o fim: “esse final de quaresma pode trazer muitos sonhos confusos, noites cansativas, gente caçando motivo para discussão — e a única coisa que eu tenho a dizer é: EVITEM.” A recomendação para os últimos dias é dobrar a oração ao anjo da guarda e as conversas com o Ori, e dormir com um copo de água ao lado da cama, descartado em água corrente no dia seguinte.</p>
+        <span class="stamp"><b>Mayra</b> · 17/02, 26/02 e 15/04/2025</span>
+      </div>
+    </section>
+
+    <!-- 09 -->
+    <section class="sec" id="preceito">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Preceito e conduta</h2></div>
+
+      <div class="entry">
+        <h3>O que é o preceito</h3>
+        <div class="recipe">
+          <div class="when">Começa na sexta-feira às 18h, ou na véspera</div>
+          <ul>
+            <li>Sem carne vermelha</li><li>Sem sexo</li><li>Sem bebida alcoólica</li><li>Sem fumo</li>
+            <li>Sem pensamentos negativos e sem autodepreciação</li><li>Evitar brigas e ambientes caóticos</li>
+            <li>Sereno no Ori</li><li>Banho de folha nos dias que antecedem</li>
+            <li>Boa noite de sono, comida leve</li>
+          </ul>
+          <p class="after">“Não é sobre deixar de viver, é somente resguardar o corpo pra amanhã ter energia pra viver o rolê.” E: “o preceito é algo que facilita a incorporação e deixa o corpo limpo para receber a energia dos seus.”</p>
+        </div>
+        <span class="stamp"><b>Mayra</b> · 25/11/2024, 18/05/2026 e 06/12/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>A carta de regras do encontro</h3>
+        <p>O texto mais completo sobre conduta veio no convite de maio de 2026. Os pontos que valem além daquele dia:</p>
+        <div class="recipe">
+          <ul>
+            <li><b>Não misturar linhas no mesmo encontro.</b> Se o dia é da direita, não se traz nada relacionado a Exu na bolsa — “para que não se abra espaço para uma possível incorporação”.</li>
+            <li><b>Não misturar casas.</b> “Caso vocês estejam frequentando alguma casa, não venham. Continuem frequentando essa casa e não misturem as energias. Isso não é uma negativa, é apenas um cuidado para evitar choque de egrégoras.”</li>
+            <li><b>Não passar entidade na frente de outra.</b> Não adianta se preocupar só com a esquerda, nem passar outras entidades na frente das que ainda se está aprendendo a cuidar.</li>
+            <li><b>Cronograma.</b> Seguir uma ordem “para que não nos cansemos e nos desvitalizemos além do necessário”.</li>
+            <li><b>Quem não quiser vir, não vem</b> — só precisa sinalizar.</li>
+          </ul>
+        </div>
+        <span class="stamp"><b>Mayra</b>, via <b>Má</b> · 18/05/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Orixá Orixá, Exu Exu</h3>
+        <p>Marilene perguntou se podia levar ao encontro de Pombagira as rosas que tinha comprado para os Orixás. Resposta: “Nenhum. Orixá Orixá, Exu Exu.” A flor foi reaproveitada como banho, não como oferenda de outra linha.</p>
+        <span class="stamp"><b>Mayra</b> · 26/06/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>A abertura do trabalho</h3>
+        <p>Depois de dois anos, Mayra ajustou a dinâmica e fixou uma abertura: <b>pedir licença a Exu, orar juntas em intenção à proteção, se energizar, defumar o ambiente</b> — e só então seguir o cronograma de linhas. Cada uma leva o toco da sua entidade e deixa os pertences organizados embaixo do banquinho, de fácil acesso.</p>
+        <span class="stamp"><b>Mayra</b> · 17/08/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Não filmar, não expor</h3>
+        <blockquote>
+          <p>Vocês podem tirar fotos do padê, mas como vocês sabem eu não gosto que sejam expostas. Também não é permitido filmar as entidades, independente se for permitido pela própria entidade. Lembrem-se de ser uma coisa intimista que nos liga à ancestralidade.</p>
+        </blockquote>
+        <span class="stamp"><b>Mayra</b> · 10/11/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Quando a casa entra em preceito</h3>
+        <p>“Quando uma casa entra em preceito, os filhos também entram.” Com a morte do Tateto, a casa de Mayra fechou para o Candomblé por um ano; ela foi liberada por Ogum apenas para o trabalho, por ser o seu sustento.</p>
+        <p>Sobre o preceito individual, ela é explícita: como corta semanalmente, não faz preceito a cada corte — “se todas as vezes que eu cortar fizer preceito não vou ter vida”. Entra em preceito quando a Santa ou Maria Zureta pedem, e mantém o resguardo com o corpo por respeito aos seus e aos das filhas.</p>
+        <span class="stamp"><b>Mayra</b> · 15/06 e 26/06/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>A regra da troca</h3>
+        <p>Os encontros são tratados como troca, não como favor nem como comércio. Mayra abre a conta: lista o que custou cada item, divide pelo número de participantes e cobra a mão de corte à parte. Diz sempre a mesma frase — “se ficar pesado para alguém, é só me sinalizar que a gente se organiza” — e ofereceu parcelar. Também recusou presentes das filhas quando achou que o dinheiro delas tinha destino melhor, e no fim de 2025 abriu mão da própria mão de corte.</p>
+        <p>Um valor simbólico separado ia sempre para a mãe dela, que cede o espaço o ano todo e cozinha para o grupo.</p>
+        <span class="stamp"><b>Mayra</b> · 15/06/2026, 30/06/2026 e 10/11/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>A proibição da fofoca</h3>
+        <p>Maria Zureta proibiu o grupo de falar de certas pessoas, e esculachou Mayra por ter falado. Ela levou a sério:</p>
+        <blockquote><p>Fiquei pensando o quanto às vezes a gente REALMENTE pega ranço das pessoas por momentos que elas estão passando.</p></blockquote>
+        <p>O grupo combinou: silenciar, não perpetuar, e “quem sente ódio que sinta da sua casa”.</p>
+        <span class="stamp"><b>Mayra</b> e <b>Roberta</b> · 23/07/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Cargo é responsabilidade</h3>
+        <blockquote>
+          <p>Quando você nasce com um cargo você tem responsabilidade SIM. Responsabilidade com o que você fala, com o que você alimenta, com o que você mostra — porque as pessoas vão se espelhar em você. Uma menina de 14 anos entrando na religião deslumbrada vê e acha que é isso que é prosperar.</p>
+        </blockquote>
+        <span class="stamp"><b>Mayra</b> · 26/06/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>O limite de quem conduz</h3>
+        <blockquote>
+          <p>Eu não me coloco aqui como alguém que vai resolver todos os problemas de vocês. O nosso papel é alinhar a espiritualidade, fazer o que está ao nosso alcance e pedir que ela, no tempo dela, organize e resolva o que for necessário.</p>
+        </blockquote>
+        <p>Em outubro de 2025 ela foi mais longe e escreveu o texto mais direto dos dois grupos: não quer abrir casa de axé, não vai antecipar o processo dela no Candomblé para iniciar ninguém, e a salinha existe para dar autonomia — “sempre deixo claro: quero que vocês busquem uma casa onde se sintam bem. Quando vocês estiverem firmadas em algum terreiro, a responsabilidade espiritual de vocês já não será mais minha, e isso é natural.” E: “busco sempre ser verdadeira sobre o que posso e o que não posso fazer. Não prometo aos guias de vocês nada que eu não possa cumprir.”</p>
+        <span class="stamp"><b>Mayra</b> · 09/07/2026 e 13/10/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Pedir desculpas é fundamento</h3>
+        <blockquote>
+          <p>Quem cuida de gente precisa de urgência pra pedir desculpas. Se a gente não pede, sobe pra cabeça e a gente começa a achar que as pessoas entendem, quando não é bem assim. São gestos muito pequenos que salvam o axé da gente indiretamente.</p>
+        </blockquote>
+        <span class="stamp"><b>Mayra</b> · 30/07/2026</span>
+      </div>
+    </section>
+
+    <!-- 10 -->
+    <section class="sec" id="oraculo">
+      <div class="sec-head"><span class="sec-num">10</span><h2>O oráculo</h2></div>
+      <p class="sec-note">Mayra é cartomante de profissão e deu curso para o grupo. Três baralhos circulam: o Baralho de Pombagira, o Baralho Cigano e, a partir de 2025, o Tarô dos Orixás — apostila escrita por ela.</p>
+
+      <div class="entry">
+        <h3>A carta diária</h3>
+        <p>Desafio lançado em julho de 2026: cada uma abre uma carta por dia para saber como vai ser o dia e compartilha no grupo. Não é obrigatório responder — “ouvir outras percepções da mesma carta pode ajudar”. Quem tinha dificuldade de falar foi obrigada a mandar em áudio mesmo: “você vai trabalhar a oratória, fecha o olho e vem”.</p>
+        <p>Lívia tinha criado o hábito por conta própria antes disso: o baralho fica no móvel perto da porta, e ela tira antes de sair de casa.</p>
+        <span class="stamp"><b>Mayra</b> · 08/07/2026 · <b>Lívia</b> · 17/06/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>O curso, em módulos</h3>
+        <p><b>Módulo I</b> — conexão com o baralho, manipular energia usando as cartas para o seu intento (dez/2024). <b>Módulo II</b> — números, simbologia e feitiços do dia a dia com cartas (jun/2026). Depois: numerologia das cartas; saúde no jogo; método de tiragem mensal; cleromancia para a malandragem; e o Tarô dos Orixás.</p>
+        <p>O retorno de Roberta, um ano depois: “o curso tem me ajudado DEMAIS. Eu consigo tirar dúvidas do dia a dia, entender melhor o que a espiritualidade precisa falar comigo, me preparar pra minha semana, pro meu mês. E sempre que tenho dúvida, ouço os áudios antigos, leio a apostila.”</p>
+        <span class="stamp"><b>Mayra</b> · 10/12/2024 e 15/06/2026 · <b>Roberta</b> · 07/11/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Tiragem mensal e leitura cruzada</h3>
+        <p>Método próprio, com campo de saúde. Em agosto de 2026 Mayra propôs a troca: cada uma lê para outra e manda o áudio no privado da pessoa — Ellen lê para Roberta, Roberta para Marilene, Marilene para Lívia, Lívia para Ellen.</p>
+        <span class="stamp"><b>Mayra</b> · 13/08 e 31/08/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>O baralho como referência de decisão</h3>
+        <p>Regra dada antes de uma viagem: “se for muito urgente me mandem mensagem; se não for muito urgente, <b>consulte o oráculo de vocês</b>.” E diante de uma dúvida de compra: “olha no seu jogo!”</p>
+        <span class="stamp"><b>Mayra</b> · 19/08 e 24/08/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>A regra que veio de um erro</h3>
+        <blockquote><p>Nunca, em hipótese alguma, tirem tarô para o homem que vocês beijam.</p></blockquote>
+        <p>Mayra fez a tiragem mensal do ficante com o Baralho de Pombagira e a dela com o Baralho Cigano, no mesmo dia. As leituras se contradisseram no campo amoroso. Lívia sintetizou: “é tipo médico que não pode operar o próprio familiar”.</p>
+        <span class="stamp"><b>Mayra</b> e <b>Lívia</b> · 31/07/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Astrologia como camada de leitura</h3>
+        <p>Mayra cruza ritual com trânsito com frequência, sempre sinalizando a origem: “as informações desse texto são da internet, eu me baseio em várias coisas pra tirar as minhas opiniões”. O eclipse de março de 2025 virou uma orientação prática: papel, lápis, banho de ervas, chá de artemísia, e metas escritas sob a luz da lua. Depois do corte de junho de 2026, ela leu o ritual junto com Mercúrio retrógrado em Câncer — “um trânsito que tende a trazer à tona sentimentos confusos, padrões herdados de quem veio antes de nós”.</p>
+        <p>Lua também entra: minguante para minguar medos e limpar; crescente para prosperar; lua nova para começar; lua cheia para colocar as contas no papel.</p>
+        <span class="stamp"><b>Mayra</b> · 12/03/2025, 01/07/2026 e 10/06/2025</span>
+      </div>
+    </section>
+
+    <!-- 11 -->
+    <section class="sec" id="sonhos">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Sonhos e sinais</h2></div>
+
+      <div class="entry">
+        <h3>O método diante de um sonho</h3>
+        <p>A resposta padrão de Mayra não é interpretar de imediato. É: <b>observar os outros sonhos, firmar o anjo da guarda, abrir o baralho.</b> E antes disso, uma pergunta: “você sentiu algo específico?”</p>
+        <blockquote><p>Sonho é interpretação pessoal. Anota no seu livro de sonhos.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 10/07/2026 e 21/09/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Corrigir a leitura pelo fundamento</h3>
+        <p>O primeiro sonho levado ao grupo — Marilene sonhando com um homem de chapéu vermelho que se apresentou como Exu — recebeu uma correção que virou aula:</p>
+        <blockquote>
+          <p>Exu é caminho. Às vezes é só alimentar o caminho, respeitar o caminho, honrar o caminho. A caráter de curiosidade: Exu não é cuidado na umbanda sendo Orixá de cabeça de ninguém, e no candomblé Exu é muito melindroso de fazer. Exu Orixá não usa chapéu assim. Faz mais lógica Exu dizer que ele tá suave, e que ele tá deixando a Pombagira na frente, porque ela sim precisa ser mais cuidada.
+        </p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 21/09/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Sonho como espelho</h3>
+        <p>Três leituras dadas no mesmo dia, todas voltando o sonho para dentro de quem sonhou: um sonho de traição virou “olhar o que é feio dentro de você mas ainda flertar com isso”; um sonho só de trabalho virou “a necessidade de se sentir útil”; e o dela própria, visitar um lugar onde já tinha morado, “a busca por se sentir parte de algo”.</p>
+        <span class="stamp"><b>Mayra</b> · 13/07/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Sonho que gera ação ritual</h3>
+        <p>Três sonhos seguidos com Mulambo levaram Mayra a antecipar um corte de limpeza — “é o terceiro sonho e ele foi bem claro”. No sonho mais detalhado, um homem vestido de Malandro mostrou como deveria ser feito o agrado do Boiadeiro de Roberta, e para quê: prosperidade. Sonho, aqui, é instrução operacional.</p>
+        <p>O mesmo em novembro de 2024: um sonho com penas azuis e a frase “converse com seu pai” levou a uma conversa que a preparou para uma perda — “o amor de Orixá é tão grande que Matamba e Mutakalambo estão sendo generosos ao me preparar pra isso”.</p>
+        <span class="stamp"><b>Mayra</b> · 14/07/2026 e 19/11/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Quando o grupo inteiro sonha</h3>
+        <p>Duas vezes o grupo registrou sonhos bizarros na mesma noite, e Mayra leu como fenômeno coletivo, não individual: em junho de 2025, “a lua tá minguante em peixes, a gente tá vivendo expurgo” — e prescreveu a limpeza de vela na coluna e na nuca. Em agosto de 2026, a espada-de-são-jorge com guiné no travesseiro.</p>
+        <span class="stamp"><b>Mayra</b> · 19/06/2025 e 17/08/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>Aprender a ler os sinais</h3>
+        <p>Conversa de maio de 2026 sobre o que o grupo trata como sinal: sonhos com entidade, avisos que só se entendem depois, promessa em vez de aviso. “A gente é muito avisada das coisas, mas com o tempo é que a gente vai aprendendo a ler os sinais.” E a advertência de Marilene: “às vezes a gente tá tão dentro do rolê que fica difícil de ler os sinais”.</p>
+        <p>Também entram nessa categoria: coisas que somem em casa (“eles deixam mostrar que estão presentes”), corujas, animais que aparecem, velas que não acendem ou que estalam, e o estado da oferenda no dia seguinte.</p>
+        <span class="stamp"><b>Roberta</b> e <b>Má</b> · 10/05/2026 · <b>Roberta</b> · 03/10/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Sinal na rua</h3>
+        <p>O grupo trata encontros com moradores de rua como recado. Marilene: um homem disse que ela era moça boa, ela respondeu “salve a malandragem”, e ele derramou um pouco da cerveja no chão e sorriu. Mayra, no Rio, foi parada por uma moradora de rua que se apresentou como quem trabalha para Padilha e Mulambo. Ela levava moedas na bolsa especificamente para isso — “para poder pagar a rua”. E quando entregou moedas num banco para Ogum, apareceu na hora um homem em situação de rua: “muito ouro né moça, entendi”.</p>
+        <span class="stamp"><b>Má</b> · 25/06/2026 e 05/01/2026 · <b>Mayra</b> · 24/08/2026</span>
+      </div>
+    </section>
+
+    <!-- 12 -->
+    <section class="sec" id="vocabulario">
+      <div class="sec-head"><span class="sec-num">12</span><h2>Vocabulário</h2></div>
+      <p class="sec-note">Termos como os grupos usam. As definições longas são de Mayra; as curtas são o sentido de uso na conversa.</p>
+
+      <dl class="grid">
+        <div class="gitem"><dt>Mukondo <span class="tag">Angola</span></dt><dd>Axexê em outras nações. O rito de passagem final, que encaminha o espírito do iniciado e desplanta tudo que ele recebeu em vida. Dura 7 dias. Só tem direito quem tem 7 anos de santo tomado.<span class="stamp"><b>Mayra</b> · 21/07/2026</span></dd></div>
+        <div class="gitem"><dt>Preceito</dt><dd>Resguardo que facilita a incorporação e deixa o corpo limpo. Quando a casa entra, os filhos entram junto.<span class="stamp"><b>Mayra</b> · 18/05/2026</span></dd></div>
+        <div class="gitem"><dt>Corte</dt><dd>A oferenda de animal. “Dar o bico” é bancar o bicho; a “mão de corte” é cobrada à parte.<span class="stamp"><b>Mayra</b> · 04/08/2026</span></dd></div>
+        <div class="gitem"><dt>Ejé</dt><dd>O sangue da oferenda. “Cada gota de ejé derramada.”<span class="stamp"><b>Mayra</b> · 09/07/2026</span></dd></div>
+        <div class="gitem"><dt>Menga</dt><dd>O sangue do corte, quando se cruza uma guia nova.<span class="stamp"><b>Mayra</b> · 23/09/2025</span></dd></div>
+        <div class="gitem"><dt>Padê</dt><dd>Oferenda de farinha (e carne, e o que a entidade pedir) para acordar Exu e colocar a gira em movimento.<span class="stamp"><b>Mayra</b> · 09/07/2026</span></dd></div>
+        <div class="gitem"><dt>Balaio</dt><dd>O padê grande de fim de ano, com alguidares montados para Exu e Pombagira.<span class="stamp"><b>Mayra</b> · 10/11/2025</span></dd></div>
+        <div class="gitem"><dt>Firmeza</dt><dd>O assentamento e o ato de acender e cuidar dele. Cada uma mantém a sua organizada numa caixa.<span class="stamp"><b>Mayra</b> · 15/06/2026</span></dd></div>
+        <div class="gitem"><dt>Quartinha</dt><dd>A peça de louça da firmeza; a de Ori é branca e com asa.<span class="stamp"><b>Mayra</b> · 07/02/2025</span></dd></div>
+        <div class="gitem"><dt>Alguidar</dt><dd>A vasilha de barro da oferenda. Número 0 para corte, 3 para padê, 4 para comida de Orixá.<span class="stamp"><b>Mayra</b> · 09/11/2024</span></dd></div>
+        <div class="gitem"><dt>Sacudimento</dt><dd>Limpeza passando folhas — ou canjica, pipoca e farinha — pelo corpo.<span class="stamp"><b>Mayra</b> · 09/11/2024</span></dd></div>
+        <div class="gitem"><dt>Amaci</dt><dd>Preparo de ervas usado para cruzar guia nova.<span class="stamp"><b>Mayra</b> · 23/09/2025</span></dd></div>
+        <div class="gitem"><dt>Efun</dt><dd>Pemba branca ralada, usada no banho de limpeza grande.<span class="stamp"><b>Mayra</b> · 09/10/2024</span></dd></div>
+        <div class="gitem"><dt>Braja</dt><dd>Guia trabalhada, de fundamento — a de Maria Zureta foi pedida de três pernas.<span class="stamp"><b>Mayra</b> · 02/09/2025</span></dd></div>
+        <div class="gitem"><dt>Ração</dt><dd>A roupa de chita, usada para caboclo.<span class="stamp"><b>Mayra</b> · 24/08/2026</span></dd></div>
+        <div class="gitem"><dt>Virar / desvirar</dt><dd>Incorporar e sair da incorporação. Regra do velório: “o mais velho vira, o mais novo responde — então acaba virando todo mundo.”<span class="stamp"><b>Mayra</b> · 08/06/2026</span></dd></div>
+        <div class="gitem"><dt>Bolar no santo</dt><dd>Cair em transe involuntário.<span class="stamp"><b>Roberta</b> · 22/04/2025</span></dd></div>
+        <div class="gitem"><dt>Marmotar</dt><dd>Inventar; confundir a própria vontade com a da entidade. O medo recorrente do grupo: “será que eu marmotei?”<span class="stamp"><b>Roberta</b> · 24/06/2026</span></dd></div>
+        <div class="gitem"><dt>Animismo</dt><dd>Quando o médium mistura a própria personalidade na incorporação. Citado por Mayra como a hipótese mais branda para um caso duvidoso.<span class="stamp"><b>Mayra</b> · 22/09/2025</span></dd></div>
+        <div class="gitem"><dt>Esculacho / coro</dt><dd>A bronca da entidade. “A pior coisa que pode me acontecer é tomar esculacho de Exu.” E: “entidade dá coro, mas Santo não — Santo só afasta e deixa você se foder sozinho.”<span class="stamp"><b>Mayra</b> · 23/07/2026 e 26/06/2025</span></dd></div>
+        <div class="gitem"><dt>Enquizilar</dt><dd>A entidade ficar contrariada com algo — química no cabelo, piercing, tatuagem. “Tudo é negociável se você fizer a sua parte.”<span class="stamp"><b>Mayra</b> · 06/11/2025</span></dd></div>
+        <div class="gitem"><dt>Egun</dt><dd>Espírito de morto. “Todo espírito é egun.”<span class="stamp"><b>Mayra</b> · 03/12/2024</span></dd></div>
+        <div class="gitem"><dt>Kiumba</dt><dd>Espírito ruim, perdido. “Espíritos ruins geralmente a gente chama de Kiumba.”<span class="stamp"><b>Mayra</b> · 03/12/2024</span></dd></div>
+        <div class="gitem"><dt>Contra-egum</dt><dd>A proteção usada no corpo. “Não é um colete à prova de balas que garante que nenhum vai chegar perto, mas a função dele é afastar. Desenvolvimento mediúnico deixa o corpo muito aberto.”<span class="stamp"><b>Mayra</b> · 03/12/2024</span></dd></div>
+        <div class="gitem"><dt>Calunga pequena</dt><dd>O cemitério. É onde se entrega parte das oferendas.<span class="stamp"><b>Mayra</b> · 17/07/2026</span></dd></div>
+        <div class="gitem"><dt>Ogã</dt><dd>Quem corta. “O Ogã é quem corta mesmo.”<span class="stamp"><b>Mayra</b> · 23/07/2026</span></dd></div>
+        <div class="gitem"><dt>Cambonar</dt><dd>Auxiliar a entidade incorporada.<span class="stamp"><b>Mayra</b> · 25/02/2025</span></dd></div>
+        <div class="gitem"><dt>Bater cabeça</dt><dd>A saudação em terra. Feita para os Exus homens no dia do corte.<span class="stamp"><b>Lívia</b> · 18/07/2026</span></dd></div>
+        <div class="gitem"><dt>Ori</dt><dd>A cabeça. Tem quartinha própria e recebe vela e conversa diárias. Cuidar do Ori não é bori.<span class="stamp"><b>Mayra</b> · 17/02/2025</span></dd></div>
+        <div class="gitem"><dt>Funfun</dt><dd>A qualidade branca — dita de Oxalá.<span class="stamp"><b>Mayra</b> · 09/07/2026</span></dd></div>
+        <div class="gitem"><dt>Nkisi</dt><dd>A divindade na nação Angola. Saudação de fechamento de Mayra: “que Nkisi dê uma boa semana a cada uma de vocês”.<span class="stamp"><b>Mayra</b> · 18/05/2026</span></dd></div>
+        <div class="gitem"><dt>Muzenza · Kota</dt><dd>Graus na nação Angola. Muzenza é a iniciada; Kota é o velho de santo, direito que vem com 7 anos.<span class="stamp"><b>Mayra</b> · 22/01/2025</span></dd></div>
+        <div class="gitem"><dt>Ngunzo · Axé</dt><dd>A força. “Você exala axé, ngunzo, brilho e luz.”<span class="stamp"><b>Mayra</b> · 02/12/2024</span></dd></div>
+        <div class="gitem"><dt>Itan</dt><dd>A história mítica. Mayra conta o dos Ibejis que enganaram a Morte.<span class="stamp"><b>Mayra</b> · 31/08/2025</span></dd></div>
+        <div class="gitem"><dt>Saudações em uso</dt><dd>“Bença” e “meu pai / minha mãe abençoe” abrem quase toda manhã. Também: Laroyê, Axé, Arroboboi (Oxumaré), Odoyá e Eparrey (Iansã), Adorei as almas, Salve a malandragem, Okê.<span class="stamp">Todo o período</span></dd></div>
+      </dl>
+    </section>
+
+    <!-- 13 -->
+    <section class="sec" id="ensinamentos">
+      <div class="sec-head"><span class="sec-num">13</span><h2>Ensinamentos</h2></div>
+      <p class="sec-note">As frases que voltam — o que o grupo repete quando precisa se orientar.</p>
+
+      <div class="entry">
+        <h3>Sobre a prática</h3>
+        <blockquote><p>A magia é prática e muito mais simples do que dizem.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 18/06/2026</span>
+        <blockquote style="margin-top:18px"><p>A magia está sempre nos detalhes.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 17/07/2026</span>
+        <blockquote style="margin-top:18px"><p>Vamos tirar Pombagira do sagrado e trazer elas pra realidade — mulheres reais.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 24/06/2026</span>
+        <blockquote style="margin-top:18px"><p>Conectar com o sagrado está em ser feliz. Nosso sagrado nos abraça quando a gente vê ele em tudo.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 20/09/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Sobre Exu e Pombagira</h3>
+        <blockquote>
+          <p>Exu rasga o véu do ego, e Pombagira testa a gente mostrando o quanto o ego é a ausência de algo que nenhuma magia é capaz de te dar — que é confiança e amor próprio.</p>
+        </blockquote>
+        <span class="stamp"><b>Mayra</b> · 19/12/2025</span>
+        <blockquote style="margin-top:18px"><p>Exu é caminho. Às vezes é só alimentar o caminho, respeitar o caminho, honrar o caminho.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 21/09/2024</span>
+        <blockquote style="margin-top:18px"><p>Adoçamento é pro que tá bom; pro que tá ruim é choro.</p></blockquote>
+        <span class="stamp">7 Navalhas, via <b>Mayra</b> · 12/11/2024</span>
+        <blockquote style="margin-top:18px"><p>Mão que abençoa não amaldiçoa.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 23/05/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Sobre o processo</h3>
+        <blockquote><p>A macumba, antes de salvar, ela humilha.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 14/07/2026</span>
+        <blockquote style="margin-top:18px"><p>A gente tá em desenvolvimento. Pode parecer que já estamos longe, mas ainda tem muito chão pela frente.</p></blockquote>
+        <span class="stamp"><b>Má</b> · 10/05/2026</span>
+        <blockquote style="margin-top:18px"><p>Tudo que se move está vivo.</p></blockquote>
+        <p>Dito pela Cigana a Mayra, na cachoeira. Ela levou ao grupo como prova de que estavam mais do que sobrevivendo — estavam vivendo.</p>
+        <span class="stamp"><b>Mayra</b> · 14/08/2026</span>
+        <blockquote style="margin-top:18px"><p>Quem deseja prosperar no próximo ano, faça primeiro uma faxina interna e deixa o medo pra trás. Só caninha pra frente quem tem coragem.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 19/12/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Sobre limites e cuidado</h3>
+        <blockquote><p>Não existe a possibilidade de ser bom pro outro sem que eu seja bem pra mim.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 15/04/2025</span>
+        <blockquote style="margin-top:18px"><p>Deixe que as pessoas sejam responsabilizadas pelas escolhas delas. Para de facilitar a vida pra quem não se preocupa de ter vida difícil.</p></blockquote>
+        <span class="stamp">Araribóia, via <b>Mayra</b> · 13/01/2025</span>
+        <blockquote style="margin-top:18px"><p>Silencie os seus pensamentos, pra escutar as necessidades do mundo fora de você.</p></blockquote>
+        <span class="stamp">A Cigana, via <b>Mayra</b> · 28/10/2024</span>
+        <blockquote style="margin-top:18px"><p>Controlem a mente de vocês para que ela não controle vocês.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 15/09/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>Sobre sentir e conduzir</h3>
+        <blockquote>
+          <p>Sempre que eu manipulo um ritual, eu consigo sentir exatamente o que aquela energia veio trabalhar e o que ela pretende despertar. Ainda durante a montagem, eu já começo a perceber os caminhos que aquele trabalho vai abrir.</p>
+        </blockquote>
+        <p>No mesmo texto ela registra o contrário do que se espera de quem conduz: naquele dia, mais do que qualquer pessoa ali, era ela quem precisava daquela energia — “por isso ela me colocou no lugar de receber, e não apenas de entregar”.</p>
+        <span class="stamp"><b>Mayra</b> · 01/07/2026</span>
+        <blockquote style="margin-top:18px"><p>Existem momentos em que o nosso desenvolvimento mediúnico é só a gente, o invisível, e a nossa consciência assimilando tudo que a gente sente. E eu, não diferente de vocês, também vivo o meu desenvolvimento diariamente — afinal, todo dia a gente desenvolve um pouco.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 18/11/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>Sobre confiar no caminho</h3>
+        <blockquote><p>Pombagira está trazendo lucidez mais uma vez, ensinando de novo que o caminho já existe — a gente que precisa se preparar pra ele.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 01/07/2026</span>
+        <blockquote style="margin-top:18px"><p>Toda vez que eu tive medo de assumir algo que eu achava que não era pra mim, eu quebrei muito a cara. A gente não tem visão mesmo; tem hora que é confiar e ir.</p></blockquote>
+        <span class="stamp"><b>Lívia</b> · 18/06/2026</span>
+        <blockquote style="margin-top:18px"><p>Tem coisas que são do caminho do outro e não do nosso, então a gente não pode mudar — só confiar, esperar e fazer a nossa parte. Ser cuidado não anula você passar por coisas ruins, mas te prepara pra elas.</p></blockquote>
+        <span class="stamp"><b>Mayra</b> · 19/11/2024</span>
+      </div>
+
+      <div class="entry">
+        <h3>O itan dos Ibejis e a Morte</h3>
+        <p>Contado por Mayra na abertura de setembro, o mês das crianças:</p>
+        <blockquote>
+          <p>A Morte havia armado ciladas para levar todo um povoado antes da hora. Desesperado, o povo buscou Orunmilá, que falou que só os Ibejis poderiam vencê-la. Apesar de não achar que iam dar conta, os gêmeos aceitaram a missão — mas com uma condição: receber doces, quiabos, e nunca mais serem impedidos de brincar.</p>
+          <p>Um deles desafiava a Morte enquanto o outro ficava tocando o tambor encantado para distraí-la. Ela ficou tão encantada pelo som que dançava sem parar, e assim nem percebia a troca entre os gêmeos. Depois disso tudo ela ficou muito cansada e implorou que parassem, dando-se por vencida. Aí eles propuseram um acordo: Ikú deveria retirar as armadilhas e só levar as pessoas no tempo certo. Ela, exausta, aceitou.</p>
+        </blockquote>
+        <span class="stamp"><b>Mayra</b> · 31/08/2025</span>
+      </div>
+
+      <div class="entry">
+        <h3>O texto de Iemanjá</h3>
+        <blockquote>
+          <p>Iemanjá é o mar que acolhe, e em um dos piores momentos da minha vida o mar me curou. Foi Iemanjá que guiou os nossos até chegar aqui nessa terra, e por isso ela é a mãe de todas as cabeças, porque é ela que permite que seus filhos caminhem em águas mansas e serenas mesmo quando sofrem. Iemanjá é mãe que acolhe, que ama em silêncio, e que escuta o filho chorar de desespero e no final mostra que tá tudo bem chorar, e dá colo pra doer menos.</p>
+        </blockquote>
+        <span class="stamp"><b>Mayra</b> · 03/02/2026</span>
+      </div>
+
+      <div class="entry">
+        <h3>O ritual das segundas</h3>
+        <p>Não é oferenda, mas os dois grupos trataram como prática espiritual: toda segunda cada uma escreve <b>agradecimentos</b> e <b>metas</b> da semana. A proposta original, de novembro de 2024, era ainda mais direta — uma meta pessoal por semana, e as outras incentivando: “agradecer é muito mais forte que pedir”.</p>
+        <p>É o registro mais consistente dos dois cadernos: começou em 13/11/2024 e atravessou até 01/09/2026, com pausas e retomadas. Mayra usa a própria lista para nomear o que está tentando mudar em si; Marilene abre a dela sempre pela entidade que a conduz. É o que mais mostra para o que a prática estava servindo.</p>
+        <span class="stamp"><b>Mayra</b> · 13/11/2024 → <b>todas</b> · 01/09/2026</span>
+      </div>
+    </section>
+
+    <p class="empty" id="empty">Nenhuma entrada corresponde a essa busca.</p>
+
+    <footer>
+      Extraído de dois exports de WhatsApp sem mídia: “Macumbalisticas💃🏾” (955 KB, 9.780 mensagens, 14/09/2024–19/05/2026) e “Clã das Macumbeiras da Salinha ❤️” (336 KB, 4.161 mensagens, 04/05/2026–01/09/2026).<br>
+      1.585 arquivos de mídia não vieram nos exports e não estão representados aqui.<br>
+      Nenhum conteúdo foi inferido, completado ou inventado: cada entrada tem correspondência direta no texto original.
+    </footer>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  var q = document.getElementById('q');
+  var count = document.getElementById('count');
+  var empty = document.getElementById('empty');
+  var items = Array.prototype.slice.call(document.querySelectorAll('.entry, .gitem'));
+  var secs = Array.prototype.slice.call(document.querySelectorAll('.sec'));
+  var total = items.length;
+
+  function norm(s){
+    return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  }
+  items.forEach(function(el){ el.dataset.hay = norm(el.textContent); });
+
+  q.addEventListener('input', function(){
+    var term = norm(q.value.trim());
+    if(!term){
+      items.forEach(function(el){ el.classList.remove('is-hidden'); });
+      secs.forEach(function(s){ s.classList.remove('is-hidden'); });
+      empty.style.display = 'none';
+      count.textContent = '';
+      return;
+    }
+    var hits = 0;
+    items.forEach(function(el){
+      var ok = el.dataset.hay.indexOf(term) !== -1;
+      el.classList.toggle('is-hidden', !ok);
+      if(ok) hits++;
+    });
+    secs.forEach(function(s){
+      var visible = s.querySelectorAll('.entry:not(.is-hidden), .gitem:not(.is-hidden)').length;
+      var hasNoItems = s.querySelectorAll('.entry, .gitem').length === 0;
+      s.classList.toggle('is-hidden', visible === 0 && !hasNoItems);
+    });
+    count.textContent = hits + ' de ' + total + ' entradas';
+    empty.style.display = hits === 0 ? 'block' : 'none';
+  });
+
+  var btn = document.getElementById('theme');
+  btn.addEventListener('click', function(){
+    var root = document.documentElement;
+    var cur = root.getAttribute('data-theme');
+    var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var next = !cur ? (prefersDark ? 'light' : 'dark') : (cur === 'dark' ? 'light' : 'dark');
+    root.setAttribute('data-theme', next);
+    try{ localStorage.setItem('caderno-theme', next); }catch(e){}
+  });
+  try{
+    var saved = localStorage.getItem('caderno-theme');
+    if(saved) document.documentElement.setAttribute('data-theme', saved);
+  }catch(e){}
+})();
+</script>
